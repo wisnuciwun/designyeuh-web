@@ -7,11 +7,6 @@ import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from
 import TextIcons from '../components/TextIcons';
 
 class DefaultHeader extends Component {
-  check = () => {
-    const images = FileImporter(require.context('../public/ResumeThumbnail', false, /\.(png|jpe?g|svg)$/));
-
-    console.log("files", images)
-  }
     render() {
         return (
             <div>
@@ -21,13 +16,10 @@ class DefaultHeader extends Component {
                   <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto text-light">
                       <Nav.Link href="home"><i className="fas fa-home"></i>&nbsp;&nbsp;Home</Nav.Link>
-                        {/* <NavDropdown title="Category" id="basic-nav-dropdown">
-                          <NavDropdown.Item href="#action/3.1"><i className="fas fa-user-tie"></i>&nbsp;&nbsp;Formal</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.2"><i className="far fa-hand-rock"></i>&nbsp;&nbsp;Energic</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.3"><i className="fas fa-poo-storm"></i>&nbsp;&nbsp;Modern</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.3"><i className="fas fa-robot"></i>&nbsp;&nbsp;Technology</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.3"><i className="far fa-sticky-note"></i>&nbsp;&nbsp;Basic</NavDropdown.Item>
-                        </NavDropdown> */}
+                        <NavDropdown title="Category" id="basic-nav-dropdown">
+                          <NavDropdown.Item href="/resumes"><i class="fas fa-file-alt"></i>&nbsp;&nbsp;Resume</NavDropdown.Item>
+                          <NavDropdown.Item href="/images"><i class="far fa-images"></i>&nbsp;&nbsp;Wallpaper</NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                     <UncontrolledDropdown>
                       <DropdownToggle nav>
@@ -35,7 +27,6 @@ class DefaultHeader extends Component {
                       </DropdownToggle>
                       <DropdownMenu className="menu-profil" right>
                         <DropdownItem href="/login"><TextIcons icon="fas fa-sign-out-alt" text="Logout"/></DropdownItem>
-                        <DropdownItem onClick={this.check}><TextIcons icon="fas fa-check" text="Check Item" /></DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </Navbar.Collapse>

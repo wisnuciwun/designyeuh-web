@@ -16,7 +16,7 @@ export default class Contacts extends Component {
                             <div>
                                 <h3>WISNU ADI WARDHANA</h3>
                                 <br/>
-                                <i>'Just life with money, faith and friends. Maybe thats enough, or just imagination ?'</i><br/>
+                                <i>'code is not that hard, unless you do'</i><br/>
                                 <TextIcons text="State Polytechnic of Malang" icon="fas fa-user-graduate"/>
                                 <TextIcons text="IT Programmer at PT. Global Service Indonesia" icon="fas fa-briefcase"/>
                                 <TextIcons text="Delta Cakung Apartemen BLOK CA LT. 3 NO. 8, EAST JAKARTA" icon="fas fa-map-marker-alt"/>

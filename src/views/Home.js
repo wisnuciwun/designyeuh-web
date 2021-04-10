@@ -3,6 +3,8 @@ import FileImporter from '../helpers/FileImporter';
 import { Pagination } from 'react-bootstrap';
 import PictureTableSingle from '../components/PictureTableSingle';
 import Axios from '../helpers/axios';
+import ContentRow from '../components/ContentRow';
+import Executor from '../helpers/Executor';
 
 export class Home extends Component {
     constructor(props) {
@@ -19,104 +21,98 @@ export class Home extends Component {
                 imgLinks:[],
             },
 
-            timeSorted:{},
-            popularSorted: {},
+            resumeTimeSorted:{
+                ShowImg: [],
+                ShowPath: [],
+                ShowLink: []
+            },
+            resumePopularSorted: {
+                ShowImg: [],
+                ShowPath: [],
+                ShowLink: []
+            },
+            wallpaperTimeSorted: {
+                ShowImg: [],
+                ShowPath: [],
+                ShowLink: []
+            },
+            wallpaperPopularSorted: {
+                ShowImg: [],
+                ShowPath: [],
+                ShowLink: []
+            },
+            
+            resumeSortByTime: [],
+            resumeSortByPopularity: [],
+            wallpaperSortByTime: [],
+            wallpaperSortByPopularity: []
 
-            timeShowImg: [],
-            timeShowPath: [],
-            timeShowLink: [],
-
-            popularShowImg: [],
-            popularShowPath: [],
-            popularShowLink: [],
-
-            sortByTime: [],
-            sortByPopularity: [],
         }
     }
     
     ImgImporters = async () => {
-        const test = await FileImporter(require.context('../public/ResumeThumbnail', false, /\.(png|jpe?g|svg)$/));
+        let resumeByTime = this.state.resumeSortByTime
+        let resumeByPopular = this.state.resumeSortByPopularity
+        let wallpaperByTime = this.state.wallpaperSortByTime
+        let wallpaperByPopular = this.state.wallpaperSortByPopularity
 
-        let { sortByPopularity, sortByTime } = this.state
-        let allSorted = [ sortByTime, sortByPopularity ]
-        let allSortedRaw = [ "timeSorted", "popularSorted" ]
+        let allSorted = [ resumeByTime, resumeByPopular, wallpaperByTime, wallpaperByPopular ]
 
         for (let i = 0; i < allSorted.length; i++) {
             let extracts = allSorted[i]
             let imgpth = extracts.map(x => {return(x.filename)})
             let imgnm = extracts.map(x => {return(x.title)})
             let imglink = extracts.map(x => {return(x.link)})
-            let v = allSortedRaw[i]
+            let v = allSorted[i]
 
             switch (v) {
-                case "timeSorted":
+                case resumeByTime:
                     this.setState({
-                        timeSorted:{
-                            ...this.state.template,
-                            imgPath: imgpth,
-                            imgNames: imgnm,
-                            imgLinks: imglink,
-                            allPage: Math.ceil(imgnm.length / this.state.perPage)
+                        resumeTimeSorted:{
+                            ShowImg: imgnm,
+                            ShowPath: imgpth,
+                            ShowLink: imglink
                         }
                     })
-                case "popularSorted":
+                case resumeByPopular:
                     this.setState({
-                        popularSorted:{
-                            ...this.state.template,
-                            imgPath: imgpth,
-                            imgNames: imgnm,
-                            imgLinks: imglink,
-                            allPage: Math.ceil(imgnm.length / this.state.perPage)
+                        resumePopularSorted:{
+                            ShowImg: imgnm,
+                            ShowPath: imgpth,
+                            ShowLink: imglink                        
                         }
-                    })            
-                default:
-                    break;
-            }
-        }
-
-        this.Paging()
-
-    }
-
-    Paging = () =>
-    {
-        let { timeSorted, popularSorted } = this.state
-
-        let allSortedRaw = [ timeSorted, popularSorted ]
-
-        for (let i = 0; i < allSortedRaw.length; i++) {
-            let v = allSortedRaw[i]
-            let {imgNames, imgPath, imgLinks, offset, activePage, perPage} = allSortedRaw[i]
-
-            let imgSlice = imgNames.slice(offset * perPage, (activePage * perPage))
-            let pathSlice = imgPath.slice(offset * perPage, (activePage * perPage))
-            let linkSlice = imgLinks.slice(offset * perPage, (activePage * perPage))
-            
-            switch (v) {
-                case timeSorted:
-                    this.setState({
-                        timeShowImg: imgSlice,
-                        timeShowPath: pathSlice,
-                        timeShowLink: linkSlice
                     })
-                case popularSorted:
+                case wallpaperByTime:
                     this.setState({
-                        popularShowImg: imgSlice,
-                        popularShowPath: pathSlice,
-                        popularShowLink: linkSlice
-                    })            
+                        wallpaperTimeSorted:{
+                            ShowImg: imgnm,
+                            ShowPath: imgpth,
+                            ShowLink: imglink                        
+                        }
+                    })
+                case wallpaperByPopular:
+                    this.setState({
+                        wallpaperPopularSorted:{
+                            ShowImg: imgnm,
+                            ShowPath: imgpth,
+                            ShowLink: imglink                        
+                        }
+                    })        
                 default:
-                    break;
+                break;
             }
         }
     }
 
     orderBy = async () => {
         await Axios.get('/Resumes/SortByTime')
-        .then(res => this.setState({...this.state, sortByTime: res.data}))
+        .then(res => this.setState({...this.state, resumeSortByTime: res.data}))
         await Axios.get('/Resumes/SortByPopularity')
-        .then(res => this.setState({...this.state, sortByPopularity: res.data}))
+        .then(res => this.setState({...this.state, resumeSortByPopularity: res.data}))
+        await Axios.get('/Images/SortByTime')
+        .then(res => this.setState({...this.state, wallpaperSortByTime: res.data}))
+        await Axios.get('/Images/SortByPopularity')
+        .then(res => this.setState({...this.state, wallpaperSortByPopularity: res.data}))
         this.ImgImporters()
     }
 
@@ -126,21 +122,34 @@ export class Home extends Component {
     }
 
     render() {
-    
-    let {timeShowImg, timeShowPath, timeShowLink, popularShowImg, popularShowPath, popularShowLink} = this.state
+        let {template} = this.state
+        
+        let resumeNew = this.state.resumeTimeSorted
+        let resumePopularity = this.state.resumePopularSorted
+        let wallpaperNew = this.state.wallpaperTimeSorted
+        let wallpaperPopularity = this.state.wallpaperPopularSorted
+        
+        let contents = []
+        let sortArrayResume = [resumeNew, resumePopularity]
+        let sortArrayImg = [wallpaperNew, wallpaperPopularity]
+        let titleResume = ["New Resume Theme", "Popular Resume Theme"]
+        let titleImg = ["New Wallpaper", "Popular Wallpaper"]
+        
+        for (let z = 0; z < sortArrayResume.length; z++) {
+            let x = sortArrayResume[z]
+            let val = <ContentRow constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} title={titleResume[z]} icon="fas fa-file-alt" />    
+            contents.push(val)
+        }
+
+        for (let z = 0; z < sortArrayImg.length; z++) {
+            let x = sortArrayImg[z]
+            let val = <ContentRow purpose="image" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} title={titleImg[z]} icon="far fa-images" />    
+            contents.push(val)
+        }
 
         return (
             <div style={{textAlign: 'left'}}>
-                <span className="input-margin">
-                <p className="h4 grey-text"><i className="fas fa-wind"></i>&nbsp;&nbsp;New Resume Theme</p>
-                <PictureTableSingle imgname={timeShowImg} imgpath={timeShowPath} imglink={timeShowLink}/>
-                <br/>
-                </span>
-
-                <span className="input-margin">
-                <p className="h4 input-margin grey-text"><i className="far fa-star"></i>&nbsp;&nbsp;Popular Resume Theme</p>
-                <PictureTableSingle imgname={popularShowImg} imgpath={popularShowPath} imglink={popularShowLink}/>
-                </span>
+                {contents}
             </div>
         )
     }

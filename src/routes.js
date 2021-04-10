@@ -1,13 +1,15 @@
 import React from 'react'
 
 const Home = React.lazy(() => import('./views/Home'))
-const SelectedCategory = React.lazy(() => import('./views/SelectedCategory'))
+const ImageCategory = React.lazy(() => import('./views/CategoryView/ImageCategory'))
 const Misc = React.lazy(() => import('./views/Misc'))
+const ResumeCategory = React.lazy(() => import('./views/CategoryView/ResumeCategory'))
 
 const routes = [
     {path: '/home', exact: true, name: 'home', component: Home},
-    {path: '/category', name: 'category', component: SelectedCategory},
-    {path: '/misc', name: 'misc', component: Misc}
+    {path: '/images', name: 'resumes', component: ImageCategory},
+    {path: '/misc', name: 'misc', component: Misc},
+    {path: '/resumes', name: 'resumes', component: ResumeCategory}
 ]
 
 export default routes

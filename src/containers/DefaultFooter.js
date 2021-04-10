@@ -4,10 +4,7 @@ import { Row } from 'reactstrap';
 import Campaign from '../components/Campaign';
 import symbol from '../public/logo/logo_symbol.png'
 import MainModals from '../views/MainModals';
-import reactlg from '../public/logo/react.png';
-import freeddnslg from '../public/logo/freeddns.png';
-import raspilg from '../public/logo/raspi.png';
-import dotnetlg from '../public/logo/dotnet.png';
+import ingredient from '../public/logo/ingredients.jpg'
 
 export default class DefaultFooter extends Component {
     constructor(props) {
@@ -17,7 +14,6 @@ export default class DefaultFooter extends Component {
              viewstate: ''
         }
     }
-    
 
     onChangeViewMisc = (value) => {
         this.setState({
@@ -30,8 +26,8 @@ export default class DefaultFooter extends Component {
                   }
               })
         })
-
     }
+    
     render() {
         return (
             <div className="footer text-white bg-danger">
@@ -39,7 +35,6 @@ export default class DefaultFooter extends Component {
                      <div className="col-2 align-self-center" style={{cursor: "pointer"}}>
                         <p onClick={() => this.onChangeViewMisc("About")}>About</p>
                         <p onClick={() => this.onChangeViewMisc("Disclaimer")}>Disclaimer</p>
-                        {/* <p onClick={() => this.onChangeViewMisc("Terms")}>Terms and Conditions</p> */}
                         <p onClick={() => this.onChangeViewMisc("Donations")}>Donation</p>
                         <p onClick={() => this.onChangeViewMisc("Contacts")}>Contacts</p>
                         <p onClick={() => this.onChangeViewMisc("Contributors")}>Contributors</p>
@@ -48,13 +43,9 @@ export default class DefaultFooter extends Component {
                     <Campaign/>
                 </div>
                 <div className="col-3 align-self-center" style={{textAlign: "center"}}>
-                    <p>This website build with (not sponsored) :</p>
-                    <span>
-                        <img src={reactlg} alt="react logo" style={{width: "150px", height: "65px"}}/>&nbsp;&nbsp;
-                        <img src={dotnetlg} alt="dotnet logo" style={{width: "50px", height: "50px"}}/>
-                    </span>
-                    <img src={raspilg} alt="raspberry pi logo" style={{width: "220px", height: "60px"}}/>
-                    <img src={freeddnslg} alt="freeddns logo" style={{width: "220px", height: "40px", marginTop: "15px"}}/>
+                    <img src={ingredient} alt="ingredients" style={{width: "230px", height: "140px", borderRadius: "10px"}}/>&nbsp;&nbsp;
+                    <h2>Ingredients</h2>
+                    <p style={{fontSize: "10pt", textAlign: "center"}}>Server built info, devs favorite reading</p>
                 </div>
 
                 <div className="col-2 align-self-center">

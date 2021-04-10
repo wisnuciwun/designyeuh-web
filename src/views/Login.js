@@ -17,7 +17,7 @@ export default class Login extends Component {
                 <Card className="animate-screen slideIn-screen cstm login-card container">
                     <InputGroup className="vertical-center">
                         <Col style={{textAlign: 'left', padding: 0, marginLeft: 0}}>
-                            <Image src={welcome} className="img-fluid rounded float-left" alt="Responsive image" style={{width: '500px', height: '470px', borderRadius: '5px'}} />
+                            <Image src={welcome} className="img-fluid rounded float-left center-cropped" alt="Responsive image" style={{width: '500px', height: '470px', borderRadius: '5px'}} />
                         </Col>
                         <Col style={{textAlign: 'center', marginTop: '80px'}}>
                             <Image src={logo_big} id="logo-big"/>

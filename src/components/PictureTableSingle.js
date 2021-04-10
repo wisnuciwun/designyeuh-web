@@ -2,10 +2,7 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import ImageComponent from './ImageComponent'
 
-function PictureTableSingle({imgname, imgpath, imglink}) {
-
-    let constanta = 10
-
+function PictureTableSingle({imgname, imgpath, imglink, constanta, purpose}) {
     let row1 = []
 
     let divider = Math.ceil(imgname.length / 5)
@@ -24,7 +21,7 @@ function PictureTableSingle({imgname, imgpath, imglink}) {
         
         if(all.length == constanta)
         {
-            let v = all.map((val, id) => {return(<ImageComponent id={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} />)})
+            let v = all.map((val, id) => {return(<ImageComponent purpose={purpose} id={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} />)})
             row1 = v
         }
     }

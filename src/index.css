@@ -130,6 +130,7 @@ code {
   margin-top: 0px !important;
   width: 10px !important;
   z-index: 100;
+  
 }
 
 .login-card{
@@ -156,11 +157,10 @@ code {
 }
 
 .footer{
-  height: 300px !important;
-  padding: 20px;
   background-color: aqua;
+  padding: 10px;
   color: red;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .no-padding {
@@ -184,8 +184,9 @@ code {
 }
 
 .img-dropdown{
-  height: 120px !important;
+  height: 240px !important;
   min-width: 65px !important;
+  opacity: 80% !important;
 }
 
 .grey-text{
@@ -204,4 +205,12 @@ code {
 
 .menu-profil{
   margin-top: 0px !important;
+}
+
+.center-cropped {
+  object-fit: cover;
+}
+
+.padding-item-dropdown{
+  padding-top: 20px !important;
 }
