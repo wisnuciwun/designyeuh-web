@@ -10,7 +10,7 @@ class ImageCategory extends Component {
     
     render() {
         return (
-            <PictureGrid url="Images/AllImages" purpose="image"/>
+            <PictureGrid url="Images/AllImages" purpose="Images"/>
         )
     }
 }

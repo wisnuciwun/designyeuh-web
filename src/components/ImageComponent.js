@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Dropdown } from 'react-bootstrap'
+import Axios from '../helpers/axios'
 import Preview from '../views/Modals/Preview'
 
 class ImageComponent extends Component {
@@ -16,8 +17,11 @@ class ImageComponent extends Component {
         }
     }
 
-    executeDownload = (val) => 
+    executeDownload = async (val) => 
     {
+        let url = `${this.props.purpose}/Downloaded?id=${this.props.imgid}`
+        await Axios.post(url)
+
         window.open(val)
     }
 
@@ -35,7 +39,10 @@ class ImageComponent extends Component {
         window.open(val,"_self")
     }
 
-    executeDownloadImage = (value, filename) => {
+    executeDownloadImage = async (value, filename) => {
+        let url = `${this.props.purpose}/Downloaded?id=${this.props.imgid}`
+        await Axios.post(url)
+
         axios({
             url: value,
             method: "GET",
@@ -58,12 +65,12 @@ class ImageComponent extends Component {
                     <img alt={this.props.path} className="border-img center-cropped" style={{width: '150px', height:'225px'}} src={this.props.path} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="img-dropdown animate-img slideIn-img">
-                    <Dropdown.Item className="padding-item-dropdown" onClick={() => {this.props.purpose == "image" ?
+                    <Dropdown.Item className="padding-item-dropdown" onClick={() => {this.props.purpose == "Images" ?
                         this.previewImage(this.props.downlink)
                         :
                         this.modalPreview(this.props.path)}}><i className="fas fa-eye"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown"><i class="fas fa-heart"></i></Dropdown.Item>
-                    <Dropdown.Item className="padding-item-dropdown" onClick={() => { this.props.purpose == "image" ? 
+                    <Dropdown.Item className="padding-item-dropdown" onClick={() => { this.props.purpose == "Images" ? 
                         this.executeDownloadImage(this.props.downlink, this.props.name)
                         :
                         this.executeDownload(this.props.downlink)}}><i class="far fa-save"></i></Dropdown.Item>

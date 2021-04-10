@@ -13,6 +13,9 @@ class PictureGrid extends Component {
             imgPath:[],
             imgNames:[],
             imgLink:[],
+            imgId:[],
+            imgAuthor:[],
+            imgDate: [],
             perPage: 10,
             offset: 0,
             allPage: 0,
@@ -26,21 +29,28 @@ class PictureGrid extends Component {
         let imgpth = []
         let imgnm = []
         let imglk = []
+        let imgid = []
+        let imgauthor = []
+        let imgdate = []
 
         if(images !== null || images !== undefined)
         {
             images.map((x) => { 
-
             imgpth.push(x.filename)
             imgnm.push(x.title)
             imglk.push(x.link)
-
+            imgid.push(x.id)
+            imgauthor.push(x.author)
+            imgdate.push(x.uploadDate)
             })
 
         this.setState({
             imgPath: imgpth,
             imgNames: imgnm,
-            imgLink: imglk
+            imgLink: imglk,
+            imgId: imgid,
+            imgAuthor: imgauthor,
+            imgDate: imgdate
         })
         }
     }
@@ -54,9 +64,9 @@ class PictureGrid extends Component {
     }
 
     loadData = async () => {
-        await Axios.get(`/${this.props.url}?page=${this.state.activePage}&perpage=${this.state.perPage}`)
+        await Axios.get(`${this.props.url}?page=${this.state.activePage}&perpage=${this.state.perPage}`)
         .then(res => this.setState({...this.state, data: res.data}))
-        await Axios.get(`/Resumes/pages`)
+        await Axios.get(`Resumes/pages`)
         .then(res => this.setState({...this.state, allPage: Math.ceil(res.data / this.state.perPage)        
         }))
         this.imgImporters()
@@ -83,11 +93,11 @@ class PictureGrid extends Component {
       
     }
     
-    let {imgPath, imgNames, imgLink, perRow, perPage} = this.state
+    let {imgPath, imgNames, imgLink, imgAuthor, imgDate, imgId, perRow, perPage} = this.state
 
         return (
             <div>
-                <PictureTable purpose={this.props.purpose} perPage={perPage} constanta={perRow} imgname={imgNames} imgpath={imgPath} imglink={imgLink}/>
+                <PictureTable purpose={this.props.purpose} perPage={perPage} constanta={perRow} imgname={imgNames} imgpath={imgPath} imglink={imgLink} imgid={imgId} imgdate={imgDate} imgauthor={imgAuthor} />
                 <Row className="d-flex justify-content-center">
                     <Pagination style={{marginTop: "50px"}} size="sm">{items}</Pagination>
                 </Row>

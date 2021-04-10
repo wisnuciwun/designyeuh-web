@@ -10,7 +10,7 @@ class ResumeCategory extends Component {
     
     render() {
         return (
-            <PictureGrid url="Resumes/Allresumes"/>
+            <PictureGrid url="Resumes/Allresumes" purpose="Resumes"/>
         )
     }
 }

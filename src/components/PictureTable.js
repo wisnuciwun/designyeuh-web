@@ -2,7 +2,7 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import ImageComponent from './ImageComponent'
 
-function PictureTable({imgname, imgpath, imglink, constanta, perPage, purpose = ""}) {
+function PictureTable({imgname, imgpath, imglink, imgdate, imgauthor, imgid, constanta, perPage, purpose = ""}) {
 
     let row1 = []
     let row2 = []
@@ -22,9 +22,18 @@ function PictureTable({imgname, imgpath, imglink, constanta, perPage, purpose = 
         let linkrowone = imglink.slice(0, constanta)
         let linkrowtwo = imglink.slice(constanta, perPage)
 
+        let daterowone = imgdate.slice(0, constanta)
+        let daterowtwo = imgdate.slice(constanta, perPage)
+
+        let idrowone = imgid.slice(0, constanta)
+        let idrowtwo = imgid.slice(constanta, perPage)
+
+        let authorrowone = imgauthor.slice(0, constanta)
+        let authorrowtwo = imgauthor.slice(constanta, perPage)
+
         for (let z = 0; z < constanta; z++) {
-            allOne.push({imgpath: pathrowone[z], imgname: namerowone[z], imglink: linkrowone[z]})
-            allTwo.push({imgpath: pathrowtwo[z], imgname: namerowtwo[z], imglink: linkrowtwo[z]})                
+            allOne.push({imgpath: pathrowone[z], imgname: namerowone[z], imglink: linkrowone[z], imgdate: daterowone[z], imgid: idrowone[z], imgauthor: authorrowone[z]})
+            allTwo.push({imgpath: pathrowtwo[z], imgname: namerowtwo[z], imglink: linkrowtwo[z], imgdate: daterowtwo[z], imgid: idrowtwo[z], imgauthor: authorrowtwo[z]})                
         }
 
         let allRow = [allOne, allTwo]
@@ -33,7 +42,7 @@ function PictureTable({imgname, imgpath, imglink, constanta, perPage, purpose = 
         for (let i = 0; i < allRow.length; i++) {
             let v = allRow[i].map((val, id) => {
             return(
-                <ImageComponent purpose={purpose} id={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} />
+                <ImageComponent purpose={purpose} key={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} date={val.imgdate} imgauthor={val.imgauthor} imgid={val.imgid} />
                 )
             })
             

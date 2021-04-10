@@ -19,27 +19,42 @@ export class Home extends Component {
                 imgPath:[],
                 imgNames:[],
                 imgLinks:[],
+                imgId:[],
+                imgAuthor:[],
+                imgDate: []
             },
 
             resumeTimeSorted:{
                 ShowImg: [],
                 ShowPath: [],
-                ShowLink: []
+                ShowLink: [],
+                ShowId:[],
+                ShowAuthor:[],
+                ShowDate: []
             },
             resumePopularSorted: {
                 ShowImg: [],
                 ShowPath: [],
-                ShowLink: []
+                ShowLink: [],
+                ShowId:[],
+                ShowAuthor:[],
+                ShowDate: []
             },
             wallpaperTimeSorted: {
                 ShowImg: [],
                 ShowPath: [],
-                ShowLink: []
+                ShowLink: [],
+                ShowId:[],
+                ShowAuthor:[],
+                ShowDate: []
             },
             wallpaperPopularSorted: {
                 ShowImg: [],
                 ShowPath: [],
-                ShowLink: []
+                ShowLink: [],
+                ShowId:[],
+                ShowAuthor:[],
+                ShowDate: []
             },
             
             resumeSortByTime: [],
@@ -63,6 +78,10 @@ export class Home extends Component {
             let imgpth = extracts.map(x => {return(x.filename)})
             let imgnm = extracts.map(x => {return(x.title)})
             let imglink = extracts.map(x => {return(x.link)})
+            let imgid = extracts.map(x => {return(x.id)})
+            let imgauthor = extracts.map(x => {return(x.author)})
+            let imgdate = extracts.map(x => {return(x.date)})
+            
             let v = allSorted[i]
 
             switch (v) {
@@ -71,7 +90,10 @@ export class Home extends Component {
                         resumeTimeSorted:{
                             ShowImg: imgnm,
                             ShowPath: imgpth,
-                            ShowLink: imglink
+                            ShowLink: imglink,
+                            ShowId: imgid,
+                            ShowAuthor: imgauthor,
+                            ShowDate: imgdate
                         }
                     })
                 case resumeByPopular:
@@ -79,7 +101,10 @@ export class Home extends Component {
                         resumePopularSorted:{
                             ShowImg: imgnm,
                             ShowPath: imgpth,
-                            ShowLink: imglink                        
+                            ShowLink: imglink,
+                            ShowId: imgid,
+                            ShowAuthor: imgauthor,
+                            ShowDate: imgdate
                         }
                     })
                 case wallpaperByTime:
@@ -87,7 +112,10 @@ export class Home extends Component {
                         wallpaperTimeSorted:{
                             ShowImg: imgnm,
                             ShowPath: imgpth,
-                            ShowLink: imglink                        
+                            ShowLink: imglink,
+                            ShowId: imgid,
+                            ShowAuthor: imgauthor,
+                            ShowDate: imgdate                    
                         }
                     })
                 case wallpaperByPopular:
@@ -95,7 +123,10 @@ export class Home extends Component {
                         wallpaperPopularSorted:{
                             ShowImg: imgnm,
                             ShowPath: imgpth,
-                            ShowLink: imglink                        
+                            ShowLink: imglink,
+                            ShowId: imgid,
+                            ShowAuthor: imgauthor,
+                            ShowDate: imgdate                  
                         }
                     })        
                 default:
@@ -105,13 +136,13 @@ export class Home extends Component {
     }
 
     orderBy = async () => {
-        await Axios.get('/Resumes/SortByTime')
+        await Axios.get('Resumes/SortByTime')
         .then(res => this.setState({...this.state, resumeSortByTime: res.data}))
-        await Axios.get('/Resumes/SortByPopularity')
+        await Axios.get('Resumes/SortByPopularity')
         .then(res => this.setState({...this.state, resumeSortByPopularity: res.data}))
-        await Axios.get('/Images/SortByTime')
+        await Axios.get('Images/SortByTime')
         .then(res => this.setState({...this.state, wallpaperSortByTime: res.data}))
-        await Axios.get('/Images/SortByPopularity')
+        await Axios.get('Images/SortByPopularity')
         .then(res => this.setState({...this.state, wallpaperSortByPopularity: res.data}))
         this.ImgImporters()
     }
@@ -137,13 +168,13 @@ export class Home extends Component {
         
         for (let z = 0; z < sortArrayResume.length; z++) {
             let x = sortArrayResume[z]
-            let val = <ContentRow constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} title={titleResume[z]} icon="fas fa-file-alt" />    
+            let val = <ContentRow purpose="Resumes" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} imgId={x.ShowId} imgAuthor={x.ShowAuthor} imgDate={x.ShowDate} title={titleResume[z]}  icon="fas fa-file-alt" />    
             contents.push(val)
         }
 
         for (let z = 0; z < sortArrayImg.length; z++) {
             let x = sortArrayImg[z]
-            let val = <ContentRow purpose="image" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} title={titleImg[z]} icon="far fa-images" />    
+            let val = <ContentRow purpose="Images" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} imgId={x.ShowId} imgAuthor={x.ShowAuthor} imgDate={x.ShowDate} title={titleImg[z]} icon="far fa-images" />    
             contents.push(val)
         }
 
