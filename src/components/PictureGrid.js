@@ -66,7 +66,7 @@ class PictureGrid extends Component {
     loadData = async () => {
         await Axios.get(`${this.props.url}?page=${this.state.activePage}&perpage=${this.state.perPage}`)
         .then(res => this.setState({...this.state, data: res.data}))
-        await Axios.get(`Resumes/pages`)
+        await Axios.get(`${this.props.url}/pages`)
         .then(res => this.setState({...this.state, allPage: Math.ceil(res.data / this.state.perPage)        
         }))
         this.imgImporters()
