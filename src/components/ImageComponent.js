@@ -72,7 +72,6 @@ class ImageComponent extends Component {
       }
     
     render() {
-        console.log("object", this.props)
         return (
         <td className="btn-group dropright animate-screen slideIn-screen">
             <Dropdown>
