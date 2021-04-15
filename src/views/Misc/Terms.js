@@ -3,7 +3,7 @@ import { ModalBody } from 'reactstrap'
 
 function Terms() {
     return (
-        <div>
+        <div className="fadeIn-screen">
             <b>DesignYEUH</b> provides art designs such as resume, poster template and banner template for free.
             You can download everytime and everywhere all of our designs for <b>FREE</b> and absolutely <b>NO COPYRIGHT.</b>
             <br/>

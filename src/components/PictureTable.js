@@ -42,7 +42,7 @@ function PictureTable({imgname, imgpath, imglink, imgdate, imgauthor, imgid, con
         for (let i = 0; i < allRow.length; i++) {
             let v = allRow[i].map((val, id) => {
             return(
-                <ImageComponent purpose={purpose} key={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} date={val.imgdate} imgauthor={val.imgauthor} imgid={val.imgid} />
+                <ImageComponent purpose={purpose} key={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} date={val.imgdate} author={val.imgauthor} imgid={val.imgid} />
                 )
             })
             

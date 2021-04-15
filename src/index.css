@@ -42,7 +42,7 @@ code {
   border-radius: 5px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 150px) {
   .animate-img {
     animation-duration: 0.3s;
     -webkit-animation-duration: 0.3s;
@@ -51,7 +51,7 @@ code {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 150px) {
   .animate-screen {
     animation-duration: 0.3s;
     -webkit-animation-duration: 0.3s;
@@ -194,12 +194,18 @@ code {
 }
 
 .modal-body-preview{
-  width: 100% !important;
+  min-width: 95% !important;
+  min-height: 95% !important;
+}
+
+.modal-body-info{
+  width: 95% !important;
+  height: 95% !important;
 }
 
 .person-img{
-  width: 180px !important;
-  height: 250px !important;
+  width: 50% !important;
+  height: 50% !important;
   border-radius: 10px;
 }
 
@@ -213,4 +219,19 @@ code {
 
 .padding-item-dropdown{
   padding-top: 20px !important;
+}
+
+.fadeIn-screen {
+  animation: fadeInAnimation ease 0.25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
 }

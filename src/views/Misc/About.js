@@ -6,8 +6,7 @@ import logo_big from '../../public/logo/logo_big.png';
 
 function About() {
     return (
-        <div>
-            <Image src={symbol} style={{height: '100px', width: '100px'}}/>
+        <div className="fadeIn-screen">
             <Image src={logo_big} style={{height: '130px', width: '360px'}} className="navbar-brand" id="logo"/><br/><br/>
             <h2>Hello World !</h2><br/>
 

@@ -4,7 +4,7 @@ import { ModalBody } from 'reactstrap';
 export default class Disclaimer extends Component {
     render() {
         return (
-            <div>
+            <div className="fadeIn-screen">
                 <h2>Disclaimer</h2><br/><br/>
                 <div style={{textAlign: "justify", textAlignLast: "left"}}>
                     <b>INTRODUCTION</b><br/>

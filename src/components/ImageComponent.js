@@ -1,8 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Dropdown } from 'react-bootstrap'
+import { Tooltip } from 'reactstrap'
 import Axios from '../helpers/axios'
 import Preview from '../views/Modals/Preview'
+import moment from 'moment'
 
 class ImageComponent extends Component {
     constructor(props) {
@@ -13,6 +15,9 @@ class ImageComponent extends Component {
              togglePreview:{
                  toggle: false,
                  imgFile: ''
+             },
+             toggleInfo:{
+                toggle: false
              }
         }
     }
@@ -31,6 +36,15 @@ class ImageComponent extends Component {
             togglePreview:{
                 toggle: !this.state.togglePreview.toggle,
                 imgFile: value
+            }
+        })
+    }
+
+    modalInfo = (value) => 
+    {
+        this.setState({
+            toggleInfo:{
+                toggle: !this.state.toggleInfo.toggle,
             }
         })
     }
@@ -58,6 +72,7 @@ class ImageComponent extends Component {
       }
     
     render() {
+        console.log("object", this.props)
         return (
         <td className="btn-group dropright animate-screen slideIn-screen">
             <Dropdown>
@@ -66,7 +81,7 @@ class ImageComponent extends Component {
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="img-dropdown animate-img slideIn-img">
                     <Dropdown.Item className="padding-item-dropdown" onClick={() => {this.props.purpose == "Images" ?
-                        this.previewImage(this.props.downlink)
+                        this.modalPreview(this.props.downlink)
                         :
                         this.modalPreview(this.props.path)}}><i className="fas fa-eye"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown"><i class="fas fa-heart"></i></Dropdown.Item>
@@ -74,10 +89,16 @@ class ImageComponent extends Component {
                         this.executeDownloadImage(this.props.downlink, this.props.name)
                         :
                         this.executeDownload(this.props.downlink)}}><i class="far fa-save"></i></Dropdown.Item>
-                    <Dropdown.Item className="padding-item-dropdown" ><i class="fas fa-info"></i></Dropdown.Item>
+                    <Dropdown.Item className="padding-item-dropdown" id="info" ><i class="fas fa-info"></i></Dropdown.Item>
+                    
+            <Tooltip style={{textAlign: "left"}} placement="right" isOpen={this.state.toggleInfo.toggle} target="info" toggle={this.modalInfo}>
+            {this.props.name}<br/>
+            {moment(this.props.date).format("DD-MM-YYYY")}<br/>
+            {this.props.author}<br/>
+            </Tooltip>
                 </Dropdown.Menu>
             </Dropdown>
-            <Preview toggle={this.modalPreview} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path} imgName={this.props.name} />
+            <Preview class={this.props.purpose == "Images" ? "modal-body-preview" : ""} toggle={this.modalPreview} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path}/>
         </td>
 
         )

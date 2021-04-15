@@ -39,13 +39,21 @@ export default class DefaultFooter extends Component {
                         <p onClick={() => this.onChangeViewMisc("Contacts")}>Contacts</p>
                         <p onClick={() => this.onChangeViewMisc("Contributors")}>Contributors</p>
                      </div>
-                <div className="col-5 align-self-center" style={{fontSize: "11pt", opacity: "40%", textAlign: "center", textAlignLast: "justify"}}>
+                <div className="col-5 align-self-center" style={{ opacity: "40%", textAlignLast: "justify", fontSize: "80%"}}>
                     <Campaign/>
                 </div>
                 <div className="col-3 align-self-center" style={{textAlign: "center"}}>
-                    <img src={ingredient} alt="ingredients" style={{width: "230px", height: "140px", borderRadius: "10px"}}/>&nbsp;&nbsp;
-                    <h2>Ingredients</h2>
-                    <p style={{fontSize: "10pt", textAlign: "center"}}>Server built info, devs favorite reading</p>
+                <span style={{fontSize: "100%"}} className="d-none d-lg-block" >
+                    <h2 style={{textAlign: "right"}}><i className="fas fa-hamburger"></i>&nbsp;&nbsp;<b>Ingredients</b></h2>
+                    <p style={{textAlign: "right"}}>
+                        Raspberry Pi 4B (4/16 GB)<br/>
+                        React JS<br/>
+                        .Net<br/>
+                        MariaDB<br/>
+                        FreeDDNS<br/>
+                        OnlyDomains<br/>
+                    </p>
+                    </span>
                 </div>
 
                 <div className="col-2 align-self-center">

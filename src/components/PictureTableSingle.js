@@ -24,7 +24,7 @@ function PictureTableSingle({imgname, imgpath, imglink, imgid, imgdate, imgautho
         
         if(all.length == constanta)
         {
-            let v = all.map((val, id) => {return(<ImageComponent purpose={purpose} key={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} date={val.imgdate} imgauthor={val.imgauthor} imgid={val.imgid} />)})
+            let v = all.map((val, id) => {return(<ImageComponent purpose={purpose} key={id} path={val.imgpath} name={val.imgname} downlink={val.imglink} date={val.imgdate} author={val.imgauthor} imgid={val.imgid} />)})
             row1 = v
         }
     }

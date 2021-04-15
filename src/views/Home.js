@@ -5,6 +5,7 @@ import PictureTableSingle from '../components/PictureTableSingle';
 import Axios from '../helpers/axios';
 import ContentRow from '../components/ContentRow';
 import Executor from '../helpers/Executor';
+import Loading from '../components/Loading';
 
 export class Home extends Component {
     constructor(props) {
@@ -80,7 +81,7 @@ export class Home extends Component {
             let imglink = extracts.map(x => {return(x.link)})
             let imgid = extracts.map(x => {return(x.id)})
             let imgauthor = extracts.map(x => {return(x.author)})
-            let imgdate = extracts.map(x => {return(x.date)})
+            let imgdate = extracts.map(x => {return(x.uploadDate)})
             
             let v = allSorted[i]
 
@@ -180,7 +181,7 @@ export class Home extends Component {
 
         return (
             <div style={{textAlign: 'left'}}>
-                {contents}
+                {contents}                
             </div>
         )
     }

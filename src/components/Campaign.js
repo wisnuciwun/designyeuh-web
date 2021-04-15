@@ -2,7 +2,7 @@ import React from 'react'
 
 function Campaign() {
     return (
-        <span>
+        <span className="d-none d-lg-block">
             Free Design Resume Wallpaper CV Free Design Easy Word Offline<br/>
             Бесплатный дизайн Резюме Обои CV Бесплатный дизайн Easy Word Offline<br/>
             フリーデザイン履歴書壁紙CVフリーデザインイージーワードオフライン<br/>

@@ -33,7 +33,7 @@ class DefaultLayout extends Component {
             <div>
                 <UserProvider value={this.state.modalToggle}>
                     <DefaultHeader/>
-                        <Container fluid className="App lg">
+                        <Container style={{minHeight: "300px"}} fluid className="App lg">
                             <Switch>
                                 {routes.map((route, idx) => {
                                     return route.component ? (
