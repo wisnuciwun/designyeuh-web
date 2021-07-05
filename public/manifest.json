@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Designyeuh",
+  "name": "Designyeuh free resume/cv and wallpaper",
+  "description": "We brings you our free resume/cv design and wallpapers. Editable resume template in .docx format, customize it offline with Microsoft Word, WPS, Libre or any similiar apps. Or enjoy amazing photograpies from our best contributors. Absolutely, free !",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +9,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "designyeuh-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "designyeuh-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

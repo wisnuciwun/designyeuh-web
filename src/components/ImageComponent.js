@@ -1,10 +1,12 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Dropdown } from 'react-bootstrap'
-import { Tooltip } from 'reactstrap'
+import { ModalBody, Tooltip } from 'reactstrap'
 import Axios from '../helpers/axios'
 import Preview from '../views/Modals/Preview'
 import moment from 'moment'
+import { Modal } from 'bootstrap'
+import ButtonIcons from './ButtonIcon'
 
 class ImageComponent extends Component {
     constructor(props) {
@@ -22,7 +24,7 @@ class ImageComponent extends Component {
         }
     }
 
-    executeDownload = async (val) => 
+    onClickDownload = async (val) => 
     {
         let url = `${this.props.purpose}/Downloaded?id=${this.props.imgid}`
         await Axios.post(url)
@@ -30,7 +32,7 @@ class ImageComponent extends Component {
         window.open(val)
     }
 
-    modalPreview = (value) => 
+    onClickModal = (value) => 
     {
         this.setState({
             togglePreview:{
@@ -40,7 +42,7 @@ class ImageComponent extends Component {
         })
     }
 
-    modalInfo = (value) => 
+    procInfo = (value) => 
     {
         this.setState({
             toggleInfo:{
@@ -49,11 +51,7 @@ class ImageComponent extends Component {
         })
     }
 
-    previewImage = (val) => {
-        window.open(val,"_self")
-    }
-
-    executeDownloadImage = async (value, filename) => {
+    onClickDownloadImage = async (value, filename) => {
         let url = `${this.props.purpose}/Downloaded?id=${this.props.imgid}`
         await Axios.post(url)
 
@@ -80,24 +78,28 @@ class ImageComponent extends Component {
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="img-dropdown animate-img slideIn-img">
                     <Dropdown.Item className="padding-item-dropdown" onClick={() => {this.props.purpose == "Images" ?
-                        this.modalPreview(this.props.downlink)
+                        this.onClickModal(this.props.downlink)
                         :
-                        this.modalPreview(this.props.path)}}><i className="fas fa-eye"></i></Dropdown.Item>
+                        this.onClickModal(this.props.path)}}><i className="fas fa-eye"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown"><i class="fas fa-heart"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown" onClick={() => { this.props.purpose == "Images" ? 
-                        this.executeDownloadImage(this.props.downlink, this.props.name)
+                        this.onClickDownloadImage(this.props.downlink, this.props.name)
                         :
-                        this.executeDownload(this.props.downlink)}}><i class="far fa-save"></i></Dropdown.Item>
+                        this.onClickDownload(this.props.downlink)}}><i class="far fa-save"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown" id="info" ><i class="fas fa-info"></i></Dropdown.Item>
                     
-            <Tooltip style={{textAlign: "left"}} placement="right" isOpen={this.state.toggleInfo.toggle} target="info" toggle={this.modalInfo}>
+            <Tooltip style={{textAlign: "left"}} placement="right" isOpen={this.state.toggleInfo.toggle} target="info" toggle={this.procInfo}>
             {this.props.name}<br/>
             {moment(this.props.date).format("DD-MM-YYYY")}<br/>
             {this.props.author}<br/>
             </Tooltip>
                 </Dropdown.Menu>
             </Dropdown>
-            <Preview class={this.props.purpose == "Images" ? "modal-body-preview" : ""} toggle={this.modalPreview} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path}/>
+            <Preview purpose={this.props.purpose} class={this.props.purpose == "Images" ? "modal-body-preview" : ""} toggle={this.onClickModal} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path} imgNm={this.props.name}/>
+            {/* <Modal isOpen={true} >
+                <ButtonIcons title="a" />
+                <ButtonIcons title="b" />
+            </Modal> */}
         </td>
 
         )

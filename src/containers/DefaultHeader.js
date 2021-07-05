@@ -27,7 +27,8 @@ class DefaultHeader extends Component {
                               <img src={anonymous} alt="Avatar" style={{height: "50px"}} className="rounded-circle z-depth-0 float-right"/>
                             </DropdownToggle>
                             <DropdownMenu className="fadeIn-screen menu-profil" right>
-                              <DropdownItem href="/login"><TextIcons icon="fas fa-sign-out-alt" text="Logout"/></DropdownItem>
+                              <DropdownItem href="/login"><TextIcons icon={<i className="fas fa-sign-out-alt"></i>} text="Logout"/></DropdownItem>
+                              <DropdownItem href="/administrator"><TextIcons icon={<i className="fas fa-users-cog"></i>} text="Administrator"/></DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
                       </Col>

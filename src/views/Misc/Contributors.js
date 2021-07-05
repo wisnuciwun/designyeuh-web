@@ -3,6 +3,7 @@ import { Col, ModalBody } from 'reactstrap';
 import Axios from '../../helpers/axios';
 import Executor from '../../helpers/Executor';
 import TextIcons from '../../components/TextIcons';
+import { API_URL_GET_CONTRIBUTORS } from '../../constants/Constants';
 
 class Contributors extends Component {
 
@@ -16,11 +17,11 @@ class Contributors extends Component {
     
 
     componentDidMount = async () => {
-        await this.onPickData()
+        await this.getPickData()
     }
 
-    onPickData = async () => {
-        await Axios.get(`contributors`).then(res => {
+    getPickData = async () => {
+        await Axios.get(`${API_URL_GET_CONTRIBUTORS}`).then(res => {
             this.setState({
                 data: res.data
             })
@@ -33,18 +34,19 @@ class Contributors extends Component {
         dataArray = this.state.data.map(x => {
             return (
             <tr>
-`               <td className="d-flex justify-content-between align-items-center">
-`                   <div>
+               <td className="d-flex justify-content-between align-items-center">
+                  <div>
                         <img className="center-cropped fadeIn-screen person-img" alt={x.payment} src={x.imgLink} />
                     </div>
                     <div style={{textAlign: "left", width: "100%"}}>
                         <h4>{x.name}</h4>
-                        <TextIcons text={x.instagram} icon="fab fa-instagram-square" />
-                        <TextIcons text={x.facebook} icon="fab fa-facebook" />
-                        <TextIcons text={x.twitter} icon="fab fa-twitter" />
-                        <TextIcons text={x.creation} icon="fas fa-pencil-alt" />
+                        <TextIcons text={x.instagram} icon={<i className="fab fa-instagram-square"></i>} />
+                        <TextIcons text={x.facebook} icon={<i className="fab fa-facebook"></i>} />
+                        <TextIcons text={x.twitter} icon={<i className="fab fa-twitter"></i>} />
+                        <TextIcons text={x.address} icon={<i className="fas fa-home"></i>} />
                     </div>
                 </td>
+                <br/>
             </tr>
             )
 

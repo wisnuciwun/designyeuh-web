@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url('../src/public/fonts/Nunito-Regular.ttf') format('truetype');
+}
+
+* {
+  font-family: 'Nunito';
+}
+
 body, html {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -194,13 +203,16 @@ code {
 }
 
 .modal-body-preview{
-  min-width: 95% !important;
-  min-height: 95% !important;
+  min-width: 70% !important;
+  min-height: 500px !important;
+  text-align: center;
+  align-items: center;
 }
 
 .modal-body-info{
   width: 95% !important;
   height: 95% !important;
+
 }
 
 .person-img{
@@ -234,4 +246,13 @@ code {
   100% {
       opacity: 1;
   }
+}
+
+.responsive {
+  width: 100%;
+  height: 450px;
+}
+
+.form-control{
+  width: 100% !important;
 }

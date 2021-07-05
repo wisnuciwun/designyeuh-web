@@ -24,7 +24,7 @@ class PictureGrid extends Component {
         }
     }
     
-    imgImporters = async () => {
+    procImgImporters = async () => {
         var images =  this.state.data
         let imgpth = []
         let imgnm = []
@@ -56,25 +56,25 @@ class PictureGrid extends Component {
     }
 
 
-    changePage = (page) => {
+    onChangePage = (page) => {
         this.setState({
             offset: (page - 1),
             activePage: page
-        }, () => this.loadData())
+        }, () => this.getLoadData())
     }
 
-    loadData = async () => {
+    getLoadData = async () => {
         await Axios.get(`${this.props.url}?page=${this.state.activePage}&perpage=${this.state.perPage}`)
         .then(res => this.setState({...this.state, data: res.data}))
-        await Axios.get(`${this.props.purpose}/pages`)
+        await Axios.get(`${this.props.page}`)
         .then(res => this.setState({...this.state, allPage: Math.ceil(res.data / this.state.perPage)        
         }))
-        this.imgImporters()
+        this.procImgImporters()
     }
 
     componentDidMount = async () =>
     {
-        await this.loadData()
+        await this.getLoadData()
     }
 
     render() {
@@ -85,7 +85,7 @@ class PictureGrid extends Component {
     {
         for (let i = 1; i <= this.state.allPage; i++) {
             items.push(
-              <Pagination.Item style={{cursor: 'pointer'}} key={i} onClick={() => this.changePage(i)} active={this.state.activePage}>
+              <Pagination.Item style={{cursor: 'pointer'}} key={i} onClick={() => this.onChangePage(i)} color="bg-danger" active={i == this.state.activePage}>
                 {i}
               </Pagination.Item>,
             );

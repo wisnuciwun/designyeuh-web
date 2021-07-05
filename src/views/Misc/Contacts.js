@@ -15,12 +15,15 @@ export default class Contacts extends Component {
                         <tr style={{marginLeft: "20px", textAlign: "left"}}>
                                 <h3>WISNU ADI WARDHANA</h3>
                                 <br/>
-                                <i>'code is not that hard, unless you do'</i><br/>
-                                <TextIcons text="State Polytechnic of Malang" icon="fas fa-user-graduate"/>
-                                <TextIcons text="IT Programmer at PT. Global Service Indonesia" icon="fas fa-briefcase"/>
-                                <TextIcons text="Delta Cakung Apartemen BLOK CA LT. 3 NO. 8, EAST JAKARTA" icon="fas fa-map-marker-alt"/>
-                                <TextIcons text="designyeuh@gmail.com" icon="fas fa-envelope"/>
-                                <TextIcons text="@wissnuawardhamn" icon="fab fa-instagram-square"/>
+                                Here some my <i>specs</i> :<br/><br/>
+                                <TextIcons text="State Polytechnic of Malang (2019)" icon={<i className="fas fa-user-graduate"></i>}/>
+                                <TextIcons text="IT Programmer at PT. Global Service Indonesia" icon={<i className="fas fa-briefcase"></i>} />
+                                <TextIcons text="Delta Cakung Apartemen Block CA Floor. 3 No. 8, East Jakarta" icon={<i className="fas fa-map-marker-alt"></i>}/>
+                                <TextIcons text="designyeuh@gmail.com" icon={<i className="fas fa-envelope"></i>} />
+                                <TextIcons text="@wissnuawardhamn" icon={<i className="fab fa-instagram-square"></i>}/>
+                                <TextIcons text="wisnuciwun" icon={<i class="fab fa-github-square"></i>}/>
+                                <br/>
+                                Thanks for coming, you're really nice person ! 
                         </tr>
                     </div>
             </div>

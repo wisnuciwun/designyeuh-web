@@ -18,7 +18,7 @@ class DefaultLayout extends Component {
         }
     }
 
-    openModal = (val) => {
+    onClickModal = (val) => {
         this.setState({
             modalToggle: 
             {
@@ -54,7 +54,7 @@ class DefaultLayout extends Component {
                                 <Redirect from="/" to="/home" />
                             </Switch>
                         </Container>
-                    <DefaultFooter {...this.props} toggle={this.openModal}/>
+                    <DefaultFooter {...this.props} toggle={this.onClickModal}/>
                 </UserProvider>
             </div>
         )

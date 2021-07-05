@@ -4,15 +4,20 @@ import { ModalBody } from 'reactstrap'
 function Terms() {
     return (
         <div className="fadeIn-screen">
-            <b>DesignYEUH</b> provides art designs such as resume, poster template and banner template for free.
-            You can download everytime and everywhere all of our designs for <b>FREE</b> and absolutely <b>NO COPYRIGHT.</b>
-            <br/>
-            We always recommend you and your friends to download to our website directly and make sure dont Turn on the Ad-Blocker
-            to keep live this website provides you new designs for free. 
-            <br/>
-            Author never pricing any items, so dont trust any other website that similiar to our website and request some payment to you,
-            we believe that is a scam. The official website is only one here. If you find some website that copy our official website content,
-            please contact us.  
+            <h2>Terms & Conditions</h2><br/><br/>
+            <div className="d-flex justify-content-center"> 
+                <p style={{width: '66%', textAlignLast: 'left', textAlign: 'justify'}}>
+                    DesignYEUH allows you to :<br/>
+                    1. Edit and customize all of our contents. Including fonts, shapes, background, icons, etc.<br/> 
+                    2. Share links or contents to anyone<br/> 
+                    3. Give comments and suggestion<br/>
+                    4. Request any custom design (with additional fee)<br/>
+                    <br/>
+                    DesignYEUH forbids you to :<br/>
+                    1. Re-upload our original or customized contents for individual purpose. Especially if it's for sale<br/>
+                    2. Hijack, spoil and spam to our email, social media and website.<br/>
+                </p>
+            </div>
         </div>
     )
 }

@@ -8,18 +8,22 @@ function About() {
     return (
         <div className="fadeIn-screen">
             <Image src={logo_big} style={{height: '130px', width: '360px'}} className="navbar-brand" id="logo"/><br/><br/>
-            <h2>Hello World !</h2><br/>
+            <h2>Hello World !</h2>
 
-            <b>DesignYEUH</b> provides art designs such as resume, poster template and banner template for free.
-            You can download everytime and everywhere all of our designs for <b>FREE</b> and absolutely <b>NO COPYRIGHT.</b>
+            <div className="d-flex justify-content-center">
+            <p style={{width: '66%', textAlign: 'justify', textAlignLast: 'left'}}>
+            DesignYEUH shares a lot of resume template and wallpapers.
+            You could download them everytime and everywhere. All of our designs is just for FREE and absolutely NO COPYRIGHT.
+            We recommend you to download designs only from our website directly. Make sure to Turn OFF the Ad-Blocker
+            for keeping this website life and always provides you new designs for free.
+            And yet, the official website is only one here. If you find some website that plagiarize our contents,
+            please contact us.
             <br/>
-            We recommend you to download designs from our website directly. Make sure to <b>Turn OFF the Ad-Blocker </b>
-            for keeping this website life and always provides you new designs for free. 
             <br/>
-            Author never pricing any items, so dont trust any other website that similiar to our website and request some payment to you,
-            we noticed that is a <b>SCAM</b>. The official website is only one here. If you find some website that copy our official website content,
-            please contact us.<br/><br/>
-            Also if you're an designer, we pleasure if you wanted to share your design to this website. So please contact us, and we will put your contacts in our Author menu.
+            Also if you're generous designer, we pleasure if you wanted to share your design to us.
+            So please contact us, we will make you our Contributors, and yes your name will shown here.
+            </p>
+            </div>
         </div>
     )
 }

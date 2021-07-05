@@ -6,6 +6,7 @@ import Axios from '../helpers/axios';
 import ContentRow from '../components/ContentRow';
 import Executor from '../helpers/Executor';
 import Loading from '../components/Loading';
+import { API_URL_SORT_POPULARITY_IMAGES, API_URL_SORT_POPULARITY_RESUMES, API_URL_SORT_TIME_IMAGES, API_URL_SORT_TIME_RESUMES } from '../constants/Constants';
 
 export class Home extends Component {
     constructor(props) {
@@ -66,7 +67,7 @@ export class Home extends Component {
         }
     }
     
-    ImgImporters = async () => {
+    procImgImporters = async () => {
         let resumeByTime = this.state.resumeSortByTime
         let resumeByPopular = this.state.resumeSortByPopularity
         let wallpaperByTime = this.state.wallpaperSortByTime
@@ -136,21 +137,21 @@ export class Home extends Component {
         }
     }
 
-    orderBy = async () => {
-        await Axios.get('Resumes/SortByTime')
+    getOrderBy = async () => {
+        await Axios.get(`${API_URL_SORT_TIME_RESUMES}`)
         .then(res => this.setState({...this.state, resumeSortByTime: res.data}))
-        await Axios.get('Resumes/SortByPopularity')
+        await Axios.get(`${API_URL_SORT_POPULARITY_RESUMES}`)
         .then(res => this.setState({...this.state, resumeSortByPopularity: res.data}))
-        await Axios.get('Images/SortByTime')
+        await Axios.get(`${API_URL_SORT_TIME_IMAGES}`)
         .then(res => this.setState({...this.state, wallpaperSortByTime: res.data}))
-        await Axios.get('Images/SortByPopularity')
+        await Axios.get(`${API_URL_SORT_POPULARITY_IMAGES}`)
         .then(res => this.setState({...this.state, wallpaperSortByPopularity: res.data}))
-        this.ImgImporters()
+        this.procImgImporters()
     }
 
     componentDidMount = async () =>
     {
-        await this.orderBy()
+        await this.getOrderBy()
     }
 
     render() {

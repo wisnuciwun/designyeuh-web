@@ -11,11 +11,12 @@ export default class DefaultFooter extends Component {
         super(props)
     
         this.state = {
-             viewstate: ''
+             viewstate: '',
+             miscs: ['About', 'Disclaimer', 'Donations', 'Contacts', 'Contributors', 'Terms & Condition']
         }
     }
 
-    onChangeViewMisc = (value) => {
+    onClickViewMisc = (value) => {
         this.setState({
             viewstate: value
         }, () => {
@@ -33,11 +34,9 @@ export default class DefaultFooter extends Component {
             <div className="footer text-white bg-danger">
                 <Row>
                      <div className="col-2 align-self-center" style={{cursor: "pointer"}}>
-                        <p onClick={() => this.onChangeViewMisc("About")}>About</p>
-                        <p onClick={() => this.onChangeViewMisc("Disclaimer")}>Disclaimer</p>
-                        <p onClick={() => this.onChangeViewMisc("Donations")}>Donation</p>
-                        <p onClick={() => this.onChangeViewMisc("Contacts")}>Contacts</p>
-                        <p onClick={() => this.onChangeViewMisc("Contributors")}>Contributors</p>
+                        {this.state.miscs.map(x => {
+                            return(<p onClick={() => this.onClickViewMisc(x)}>{x}</p>)})
+                        }
                      </div>
                 <div className="col-5 align-self-center" style={{ opacity: "40%", textAlignLast: "justify", fontSize: "80%"}}>
                     <Campaign/>
