@@ -79,7 +79,7 @@ export class Home extends Component {
             let extracts = allSorted[i]
             let imgpth = extracts.map(x => {return(x.filename)})
             let imgnm = extracts.map(x => {return(x.title)})
-            let imglink = extracts.map(x => {return(x.link)})
+            let imglink = extracts.map(x => {return({link_Pc: x.link || null, link_Mobile: x.link_Mobile || null })})
             let imgid = extracts.map(x => {return(x.id)})
             let imgauthor = extracts.map(x => {return(x.author)})
             let imgdate = extracts.map(x => {return(x.uploadDate)})

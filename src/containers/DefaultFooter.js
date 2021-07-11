@@ -12,7 +12,7 @@ export default class DefaultFooter extends Component {
     
         this.state = {
              viewstate: '',
-             miscs: ['About', 'Disclaimer', 'Donations', 'Contacts', 'Contributors', 'Terms & Condition']
+             miscs: ['About', 'Disclaimer', 'Donations', 'Contacts', 'Contributors', 'Terms & Conditions']
         }
     }
 

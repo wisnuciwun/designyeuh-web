@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, ModalHeader } from 'reactstrap';
 import { UserConsumer } from '../helpers/UserContext';
+import ImageDownloadOptions from './Modals/ImageDownloadOptions';
 import Preview from './Modals/Preview';
 
 export default class MainModals extends Component {
@@ -17,6 +18,7 @@ export default class MainModals extends Component {
                                     {
                                         {
                                             'Preview': <Preview/>,
+                                            'ImgDownloadOpt': <ImageDownloadOptions/>
                                         }[states.type]
                                     }
                                 </Modal>

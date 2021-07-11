@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardBody, CardTitle, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Button, Card, CardBody, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import ButtonIcons from './ButtonIcon'
 import InputField from './InputField'
 
@@ -18,7 +18,9 @@ function InputsModal({data = {}, onChange, openModal, toggle, putTableData}) {
         <ModalBody>
             {inputs}
         </ModalBody>
-        <ButtonIcons onClick={putTableData} title="Submit" icon={<i className="fas fa-submit"></i>} />
+        <ModalFooter>
+            <ButtonIcons color="success" onClick={putTableData} title="Submit" icon={<i className="fas fa-submit"></i>} />
+        </ModalFooter>
     </Modal>
     )
 }

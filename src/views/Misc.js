@@ -18,8 +18,9 @@ class Misc extends Component {
                   'Disclaimer': <Disclaimer/>,
                   'Donations': <Donations/>,
                   'Contacts': <Contacts/>,
-                  'Terms': <Terms/>,
-                  'Contributors': <Contributors/>
+                  'Terms & Conditions': <Terms/>,
+                  'Contributors': <Contributors/>,
+                  '': <About/>
               }[states]
             }
             </div>

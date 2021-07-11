@@ -6,6 +6,7 @@ import FileImporter from '../helpers/FileImporter';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import TextIcons from '../components/TextIcons';
 import MenuItem from '../components/MenuItem';
+import ButtonIcons from '../components/ButtonIcon';
 
 class DefaultHeader extends Component {
     render() {
@@ -18,7 +19,6 @@ class DefaultHeader extends Component {
                     <Nav style={{width: "100%"}} className="mr-auto text-light d-flex justify-content-between">
                       <Col className="d-flex justify-content-between">
                         <Row className="align-content-center">
-                          <MenuItem title="Home" href="home" icon="fas fa-home"/>
                           <MenuItem title="Resume" href="resumes" icon="far fa-images"/>
                           <MenuItem title="Wallpaper" href="images" icon="fas fa-file-alt"/>
                         </Row>
@@ -27,8 +27,12 @@ class DefaultHeader extends Component {
                               <img src={anonymous} alt="Avatar" style={{height: "50px"}} className="rounded-circle z-depth-0 float-right"/>
                             </DropdownToggle>
                             <DropdownMenu className="fadeIn-screen menu-profil" right>
-                              <DropdownItem href="/login"><TextIcons icon={<i className="fas fa-sign-out-alt"></i>} text="Logout"/></DropdownItem>
-                              <DropdownItem href="/administrator"><TextIcons icon={<i className="fas fa-users-cog"></i>} text="Administrator"/></DropdownItem>
+                              <DropdownItem disabled={true} style={{textAlign: 'center'}}>Welcome, guest !</DropdownItem>
+                              <DropdownItem href="/login"><ButtonIcons textAlign='left' fontSize="11pt" title="Sign In" color="light" icon={<i className="fas fa-sign-out-alt"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Favorites" color="light" icon={<i class="far fa-star"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Settings" color="light" icon={<i class="fas fa-sliders-h"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Storage" color="light" icon={<i class="fas fa-box-open"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem href="/administrator"><ButtonIcons textAlign='left' fontSize="11pt" title="Administrator" icon={<i className="fas fa-users-cog"></i>} color="light" textColor="black" /></DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
                       </Col>

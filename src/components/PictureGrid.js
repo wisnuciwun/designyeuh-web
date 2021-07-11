@@ -38,7 +38,7 @@ class PictureGrid extends Component {
             images.map((x) => { 
             imgpth.push(x.filename)
             imgnm.push(x.title)
-            imglk.push(x.link)
+            imglk.push({link_Pc: x.link || null, link_Mobile: x.link_Mobile || null})
             imgid.push(x.id)
             imgauthor.push(x.author)
             imgdate.push(x.uploadDate)

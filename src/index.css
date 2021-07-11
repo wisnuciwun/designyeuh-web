@@ -143,8 +143,8 @@ code {
 }
 
 .login-card{
-  width: 950px !important;
-  height: 500px;
+  width: 100% !important;
+  height: auto;
   border-radius: 10px !important;
   padding: 20px;
 }
@@ -255,4 +255,14 @@ code {
 
 .form-control{
   width: 100% !important;
+}
+
+.btn-success:active:focus {
+  color: #ffffff !important; 
+  background-color: #161617 !important; 
+  border-color: #494F57;
+}
+
+.btn-outline-danger{
+  border-width: 0px !important;
 }

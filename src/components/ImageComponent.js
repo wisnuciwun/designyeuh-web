@@ -7,6 +7,8 @@ import Preview from '../views/Modals/Preview'
 import moment from 'moment'
 import { Modal } from 'bootstrap'
 import ButtonIcons from './ButtonIcon'
+import { API_URL_DOWNLOAD_IMAGES, API_URL_DOWNLOAD_RESUMES } from '../constants/Constants'
+import ImageDownloadOptions from '../views/Modals/ImageDownloadOptions'
 
 class ImageComponent extends Component {
     constructor(props) {
@@ -20,13 +22,14 @@ class ImageComponent extends Component {
              },
              toggleInfo:{
                 toggle: false
-             }
+             },
+             toggleImgOpt: false
         }
     }
 
     onClickDownload = async (val) => 
     {
-        let url = `${this.props.purpose}/Downloaded?id=${this.props.imgid}`
+        let url = `${API_URL_DOWNLOAD_RESUMES}?id=${this.props.imgid}`
         await Axios.post(url)
 
         window.open(val)
@@ -42,6 +45,13 @@ class ImageComponent extends Component {
         })
     }
 
+    onClickModalImgOpt = () => 
+    {
+        this.setState({
+            toggleImgOpt: !this.state.toggleImgOpt
+        })
+    }
+
     procInfo = (value) => 
     {
         this.setState({
@@ -52,7 +62,7 @@ class ImageComponent extends Component {
     }
 
     onClickDownloadImage = async (value, filename) => {
-        let url = `${this.props.purpose}/Downloaded?id=${this.props.imgid}`
+        let url = `${API_URL_DOWNLOAD_IMAGES}?id=${this.props.imgid}`
         await Axios.post(url)
 
         axios({
@@ -67,6 +77,8 @@ class ImageComponent extends Component {
             document.body.appendChild(link)
             link.click()
         })
+        
+        this.onClickModalImgOpt()
       }
     
     render() {
@@ -78,14 +90,14 @@ class ImageComponent extends Component {
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="img-dropdown animate-img slideIn-img">
                     <Dropdown.Item className="padding-item-dropdown" onClick={() => {this.props.purpose == "Images" ?
-                        this.onClickModal(this.props.downlink)
+                        this.onClickModal(this.props.downlink.link_Pc)
                         :
                         this.onClickModal(this.props.path)}}><i className="fas fa-eye"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown"><i class="fas fa-heart"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown" onClick={() => { this.props.purpose == "Images" ? 
-                        this.onClickDownloadImage(this.props.downlink, this.props.name)
+                        this.onClickModalImgOpt()
                         :
-                        this.onClickDownload(this.props.downlink)}}><i class="far fa-save"></i></Dropdown.Item>
+                        this.onClickDownload(this.props.downlink.link_Pc)}}><i class="far fa-save"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown" id="info" ><i class="fas fa-info"></i></Dropdown.Item>
                     
             <Tooltip style={{textAlign: "left"}} placement="right" isOpen={this.state.toggleInfo.toggle} target="info" toggle={this.procInfo}>
@@ -96,10 +108,7 @@ class ImageComponent extends Component {
                 </Dropdown.Menu>
             </Dropdown>
             <Preview purpose={this.props.purpose} class={this.props.purpose == "Images" ? "modal-body-preview" : ""} toggle={this.onClickModal} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path} imgNm={this.props.name}/>
-            {/* <Modal isOpen={true} >
-                <ButtonIcons title="a" />
-                <ButtonIcons title="b" />
-            </Modal> */}
+            <ImageDownloadOptions toggle={this.onClickModalImgOpt} onClickDownload={this.onClickDownloadImage} isOpen={this.state.toggleImgOpt} imgLinkPc={this.props.downlink.link_Pc} imgLinkMobile={this.props.downlink.link_Mobile} imgNm={this.props.name}/>
         </td>
 
         )

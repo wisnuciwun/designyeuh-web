@@ -96,8 +96,14 @@ export function procImageColumn(onClickDelete, onClickOpenModal) {
             Cell: props => <span>{props.value}</span>
         },
         {
-            Header: 'Download Link',
-            accessor: 'link',
+            Header: 'Download Link PC',
+            accessor: 'link_Pc',
+            minWidth: 130,
+            Cell: props => <Link>{props.value}</Link>
+        },
+        {
+            Header: 'Download Link Mobile',
+            accessor: 'link_Mobile',
             minWidth: 130,
             Cell: props => <Link>{props.value}</Link>
         },
@@ -153,14 +159,14 @@ export function procContributorColumn(onClickDelete, onClickOpenModal) {
 
         },
         {
-            Header: 'Contribution',
+            Header: 'Creation',
             accessor: 'creation',
             minWidth: 130,
             Cell: props => <span>{props.value}</span>
         },
         {
             Header: 'Instagram',
-            accessor: 'umimouu',
+            accessor: 'instagram',
             minWidth: 130,
             Cell: props => <span>{props.value}</span>
         },
