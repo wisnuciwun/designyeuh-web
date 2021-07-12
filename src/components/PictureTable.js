@@ -8,6 +8,7 @@ function PictureTable({imgname, imgpath, imglink, imgdate, imgauthor, imgid, con
     let row2 = []
     let allOne = []
     let allTwo = []
+    let amountImg = imgid.length
 
     let divider = Math.ceil(imgname.length / constanta)
     
@@ -31,8 +32,11 @@ function PictureTable({imgname, imgpath, imglink, imgdate, imgauthor, imgid, con
         let authorrowone = imgauthor.slice(0, constanta)
         let authorrowtwo = imgauthor.slice(constanta, perPage)
 
-        for (let z = 0; z < constanta; z++) {
+        for (let z = 0; z < idrowone.length; z++) {
             allOne.push({imgpath: pathrowone[z], imgname: namerowone[z], imglink: linkrowone[z], imgdate: daterowone[z], imgid: idrowone[z], imgauthor: authorrowone[z]})
+        }
+
+        for (let z = 0; z < idrowtwo.length; z++) {
             allTwo.push({imgpath: pathrowtwo[z], imgname: namerowtwo[z], imglink: linkrowtwo[z], imgdate: daterowtwo[z], imgid: idrowtwo[z], imgauthor: authorrowtwo[z]})                
         }
 

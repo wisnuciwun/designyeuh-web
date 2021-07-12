@@ -263,6 +263,21 @@ code {
   border-color: #494F57;
 }
 
-.btn-outline-danger{
+.btn-custom-color{
   border-width: 0px !important;
+  border-color: white;
+  transition: 0.3s;
+}
+
+.btn-custom-color:hover{
+  color:#bf0310 !important;
+  background-color: white !important;
+}
+
+.btn-custom-color:disabled:hover{
+  color: #494F57 !important;
+}
+
+.header-custom-menu:hover{
+  background-color: whitesmoke !important;
 }

@@ -97,7 +97,7 @@ export function procImageColumn(onClickDelete, onClickOpenModal) {
         },
         {
             Header: 'Download Link PC',
-            accessor: 'link_Pc',
+            accessor: 'link',
             minWidth: 130,
             Cell: props => <Link>{props.value}</Link>
         },

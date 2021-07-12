@@ -89,16 +89,16 @@ class ImageComponent extends Component {
                     <img alt={this.props.path} className="border-img center-cropped" style={{width: '150px', height:'225px'}} src={this.props.path} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="img-dropdown animate-img slideIn-img">
-                    <Dropdown.Item className="padding-item-dropdown" onClick={() => {this.props.purpose == "Images" ?
+                    <Dropdown.Item className="padding-item-dropdown btn btn-outline-danger btn-custom-color" onClick={() => {this.props.purpose == "Images" ?
                         this.onClickModal(this.props.downlink.link_Pc)
                         :
                         this.onClickModal(this.props.path)}}><i className="fas fa-eye"></i></Dropdown.Item>
-                    <Dropdown.Item className="padding-item-dropdown"><i class="fas fa-heart"></i></Dropdown.Item>
-                    <Dropdown.Item className="padding-item-dropdown" onClick={() => { this.props.purpose == "Images" ? 
+                    <Dropdown.Item className="padding-item-dropdown btn-custom-color"><i class="fas fa-heart"></i></Dropdown.Item>
+                    <Dropdown.Item className="padding-item-dropdown btn-custom-color" onClick={() => { this.props.purpose == "Images" ? 
                         this.onClickModalImgOpt()
                         :
                         this.onClickDownload(this.props.downlink.link_Pc)}}><i class="far fa-save"></i></Dropdown.Item>
-                    <Dropdown.Item className="padding-item-dropdown" id="info" ><i class="fas fa-info"></i></Dropdown.Item>
+                    <Dropdown.Item className="padding-item-dropdown btn-custom-color" id="info" ><i class="fas fa-info"></i></Dropdown.Item>
                     
             <Tooltip style={{textAlign: "left"}} placement="right" isOpen={this.state.toggleInfo.toggle} target="info" toggle={this.procInfo}>
             {this.props.name}<br/>
@@ -108,7 +108,7 @@ class ImageComponent extends Component {
                 </Dropdown.Menu>
             </Dropdown>
             <Preview purpose={this.props.purpose} class={this.props.purpose == "Images" ? "modal-body-preview" : ""} toggle={this.onClickModal} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path} imgNm={this.props.name}/>
-            <ImageDownloadOptions toggle={this.onClickModalImgOpt} onClickDownload={this.onClickDownloadImage} isOpen={this.state.toggleImgOpt} imgLinkPc={this.props.downlink.link_Pc} imgLinkMobile={this.props.downlink.link_Mobile} imgNm={this.props.name}/>
+            <ImageDownloadOptions toggle={this.onClickModalImgOpt} onClickDownload={this.onClickDownloadImage} isOpen={this.state.toggleImgOpt} imgLinkPc={this.props.downlink.link_Pc} imgLinkMobile={null} imgNm={this.props.name}/>
         </td>
 
         )

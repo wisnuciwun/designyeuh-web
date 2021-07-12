@@ -3,7 +3,7 @@ import { Nav } from 'react-bootstrap';
 
 function MenuItem({title, href, icon = ""}) {
     return (
-        <Nav.Link style={{marginRight: "10px"}} href={href}><i className={icon}></i>&nbsp;&nbsp;{title}</Nav.Link>
+        <Nav.Link className="btn-custom-color header-custom-menu" style={{marginRight: "10px"}} href={href}><i className={icon}></i>&nbsp;&nbsp;{title}</Nav.Link>
     )
 }
 

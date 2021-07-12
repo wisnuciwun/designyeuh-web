@@ -3,6 +3,7 @@ import FileImporter from '../helpers/FileImporter';
 import { Button, Image, Pagination, Row, Table } from 'react-bootstrap';
 import PictureTable from './PictureTable';
 import Axios from '../helpers/axios';
+import { PaginationLink } from 'reactstrap';
 
 class PictureGrid extends Component {
     constructor(props) {
@@ -85,8 +86,8 @@ class PictureGrid extends Component {
     {
         for (let i = 1; i <= this.state.allPage; i++) {
             items.push(
-              <Pagination.Item style={{cursor: 'pointer'}} key={i} onClick={() => this.onChangePage(i)} color="bg-danger" active={i == this.state.activePage}>
-                {i}
+              <Pagination.Item style={{cursor: 'pointer'}} key={i} onClick={() => this.onChangePage(i)} className="pagination-custom" active={i == this.state.activePage}>
+                <PaginationLink className="pagination-link">{i}</PaginationLink>
               </Pagination.Item>,
             );
           }

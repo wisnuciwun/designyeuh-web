@@ -8,3 +8,35 @@
 @import "node_modules/bootstrap/scss/images";
 @import "node_modules/bootstrap/scss/code";
 @import "node_modules/bootstrap/scss/grid";
+
+.pagination-custom {
+	margin-left: -5px;
+	.page-link {
+		background-color: white !important;
+		border-width: 0px !important;
+		color: black !important;
+
+	}
+	&.page-item {
+		&.active {
+			button {
+				background-color: #bf0310 !important;
+				color: white !important;
+
+			}
+		}
+	}
+}
+
+.pagination-link {
+	background-color: white !important;
+    border-width: 0px;
+	transition: 0.3s;
+	&:hover {
+		background-color:#85050e !important;
+		color: white !important;
+	}
+	&:active {
+		background-color:#bf0310 !important;
+	}
+}

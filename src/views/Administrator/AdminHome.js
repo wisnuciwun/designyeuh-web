@@ -315,10 +315,10 @@ export class AdminHome extends Component {
 
         return (
             <div>
-                <MaintenanceCard fileDownload={fileDownload} title='Resume' data={resumes} columns={resumeColumn} onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile}/>
-                <MaintenanceCard fileDownload={fileDownload} title='Image' data={images} columns={imageColumn} onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile}/>
-                <MaintenanceCard fileDownload={fileDownload} title='Contributor' data={contributors} columns={contributorColumn} onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile}/>
-                <MaintenanceCard fileDownload={fileDownload} title='Donation' data={donations} columns={donateColumn} onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile}/>
+                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Resume' data={resumes} columns={resumeColumn} />
+                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Image' data={images} columns={imageColumn} />
+                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Contributor' data={contributors} columns={contributorColumn} />
+                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Donation' data={donations} columns={donateColumn} />
 
                 <InputsModal 
                 toggle={this.onClickOpenModal}

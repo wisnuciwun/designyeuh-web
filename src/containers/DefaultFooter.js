@@ -33,7 +33,7 @@ export default class DefaultFooter extends Component {
         return (
             <div className="footer text-white bg-danger">
                 <Row>
-                     <div className="col-2 align-self-center" style={{cursor: "pointer"}}>
+                     <div className="col-2 align-self-center" style={{cursor: "pointer", marginTop: '10px'}}>
                         {this.state.miscs.map(x => {
                             return(<p onClick={() => this.onClickViewMisc(x)}>{x}</p>)})
                         }

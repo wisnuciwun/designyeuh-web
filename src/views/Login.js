@@ -95,16 +95,18 @@ export default class Login extends Component {
                                     NATIONALITIES.map(x => {return(<option>{x}</option>)})
                                 }
                             </select>
-                            <ReactDatePicker
-                            inputFormat="dd-MM-yyyy"
-                            showMonthDropdown
-                            showYearDropdown
-                            selected={born}
-                            className="input-margin form-control"
-                            placeholderText="Born Date (DD-MM-YYYY)"
-                            onChange={(date) => this.onChangeRegisterBornDate(date)}
-                            />
-                            <input onChange={this.onChangeRegisterData} name="works" value={works} type="text" className="input-margin form-control" placeholder="Work" aria-describedby="basic-addon1"/>
+                            <span className="d-flex">
+                                <ReactDatePicker
+                                inputFormat="dd-MM-yyyy"
+                                showMonthDropdown
+                                showYearDropdown
+                                selected={born}
+                                className="input-margin form-control"
+                                placeholderText="Born Date (DD-MM-YYYY)"
+                                onChange={(date) => this.onChangeRegisterBornDate(date)}
+                                />
+                                <input style={{marginLeft: '10px'}} onChange={this.onChangeRegisterData} name="works" value={works} type="text" className="input-margin form-control" placeholder="Work" aria-describedby="basic-addon1"/>
+                            </span>
                             <input onChange={this.onChangeRegisterData} name="email" value={email} type="text" className="input-margin form-control" placeholder="Email" aria-describedby="basic-addon1"/>
                             <input onChange={this.onChangeRegisterData} name="address" value={address} type="password" className="input-margin form-control" placeholder="Password" aria-describedby="basic-addon1"/>
                             <div style={{textAlign:'right', paddingTop: "10px"}}>

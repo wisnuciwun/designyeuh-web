@@ -27,12 +27,12 @@ class DefaultHeader extends Component {
                               <img src={anonymous} alt="Avatar" style={{height: "50px"}} className="rounded-circle z-depth-0 float-right"/>
                             </DropdownToggle>
                             <DropdownMenu className="fadeIn-screen menu-profil" right>
-                              <DropdownItem disabled={true} style={{textAlign: 'center'}}>Welcome, guest !</DropdownItem>
-                              <DropdownItem href="/login"><ButtonIcons textAlign='left' fontSize="11pt" title="Sign In" color="light" icon={<i className="fas fa-sign-out-alt"></i>} textColor="black" /></DropdownItem>
-                              <DropdownItem disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Favorites" color="light" icon={<i class="far fa-star"></i>} textColor="black" /></DropdownItem>
-                              <DropdownItem disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Settings" color="light" icon={<i class="fas fa-sliders-h"></i>} textColor="black" /></DropdownItem>
-                              <DropdownItem disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Storage" color="light" icon={<i class="fas fa-box-open"></i>} textColor="black" /></DropdownItem>
-                              <DropdownItem href="/administrator"><ButtonIcons textAlign='left' fontSize="11pt" title="Administrator" icon={<i className="fas fa-users-cog"></i>} color="light" textColor="black" /></DropdownItem>
+                              <DropdownItem className="btn-custom-color" disabled={true} style={{textAlign: 'left'}}>&nbsp;&nbsp;Welcome, guest !</DropdownItem>
+                              <DropdownItem className="btn-custom-color" href="/login"><ButtonIcons className="btn-custom-color" textAlign='left' fontSize="11pt" title="Sign In" backgroundColor='white' icon={<i className="fas fa-sign-out-alt"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem className="btn-custom-color" disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Favorites" backgroundColor='white' icon={<i class="far fa-star"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem className="btn-custom-color" disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Settings" backgroundColor='white' icon={<i class="fas fa-sliders-h"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem className="btn-custom-color" disabled={true} href="/"><ButtonIcons textAlign='left' fontSize="11pt" title="Storage" backgroundColor='white' icon={<i class="fas fa-box-open"></i>} textColor="black" /></DropdownItem>
+                              <DropdownItem className="btn-custom-color" href="/administrator"><ButtonIcons className="btn-custom-color" textAlign='left' backgroundColor='white' fontSize="11pt" title="Administrator" icon={<i className="fas fa-users-cog"></i>} textColor="black" /></DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
                       </Col>
