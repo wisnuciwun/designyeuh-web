@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import FileImporter from '../helpers/FileImporter';
-import { Button, Image, Pagination, Row, Table } from 'react-bootstrap';
+import { Pagination, Row } from 'react-bootstrap';
 import PictureTable from './PictureTable';
 import Axios from '../helpers/axios';
 import { PaginationLink } from 'reactstrap';

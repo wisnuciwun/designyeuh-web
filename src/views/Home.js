@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import FileImporter from '../helpers/FileImporter';
-import { Pagination } from 'react-bootstrap';
-import PictureTableSingle from '../components/PictureTableSingle';
 import Axios from '../helpers/axios';
 import ContentRow from '../components/ContentRow';
-import Executor from '../helpers/Executor';
-import Loading from '../components/Loading';
 import { API_URL_SORT_POPULARITY_IMAGES, API_URL_SORT_POPULARITY_RESUMES, API_URL_SORT_TIME_IMAGES, API_URL_SORT_TIME_RESUMES } from '../constants/Constants';
 
 export class Home extends Component {

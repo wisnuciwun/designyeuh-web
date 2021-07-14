@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, Card, CardBody, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import ButtonIcons from './ButtonIcon'
-import InputField from './InputField'
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import ButtonIcons from '../../components/ButtonIcon'
+import InputField from '../../components/InputField'
 
 function InputsModal({data = {}, onChange, openModal, toggle, putTableData}) {
     let inputs = []

@@ -12,7 +12,7 @@ function About() {
 
             <div className="d-flex justify-content-center">
             <p style={{width: '66%', textAlign: 'justify', textAlignLast: 'left'}}>
-            DesignYEUH shares a lot of resume template and wallpapers.
+            Designyeuh shares a lot of resume template and wallpapers.
             You could download them everytime and everywhere. All of our designs is just for FREE and absolutely NO COPYRIGHT.
             We recommend you to download designs only from our website directly. Make sure to Turn OFF the Ad-Blocker
             for keeping this website life and always provides you new designs for free.

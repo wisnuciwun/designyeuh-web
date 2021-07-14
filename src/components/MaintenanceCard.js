@@ -1,14 +1,13 @@
 import React from 'react'
-import { Button, Card, CardBody, CardTitle } from 'reactstrap'
+import { Card, CardBody, CardTitle } from 'reactstrap'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
-import { Row } from 'react-bootstrap'
 import ButtonIcons from './ButtonIcon'
 
-function MaintenanceCard({title = '', data, columns, defaultPageSize = 5, onClickDownload, onClickUpload, downloadRef, uploadRef, fileDownload }) {
+function MaintenanceCard({title = '', data, columns, defaultPageSize = 5, onClickDownload, onClickUpload, downloadRef, uploadRef, fileDownload, onChangeUpload }) {
     return (
         <div style={{marginBottom: '20px'}}>
-            <input ref={uploadRef} style={{visibility: "hidden"}} type="file" />
+            <input ref={uploadRef} onChange={onChangeUpload} style={{visibility: "hidden"}} type="file" />
             <a ref={downloadRef} style={{visibility: "hidden"}} href={fileDownload}></a>
             <Card style={{padding: "10px"}}>
                 <CardTitle className="d-flex justify-content-center d-lg-none" style={{padding: '10px'}}>
@@ -16,7 +15,7 @@ function MaintenanceCard({title = '', data, columns, defaultPageSize = 5, onClic
                         <h3>{title}&nbsp;Maintenance </h3>
                         <div>
                             <ButtonIcons color="dark" title="Download template" icon={<i class="fas fa-download"></i>} onClick={() => onClickDownload(title)}/>
-                            <ButtonIcons color="success" title="Insert file" icon={<i class="fas fa-upload"></i>}/>
+                            <ButtonIcons color="success" title="Insert file" icon={<i class="fas fa-upload"></i>} onClick={() => onClickUpload(title)} />
                         </div>
                     </div>
                 </CardTitle>
@@ -24,7 +23,7 @@ function MaintenanceCard({title = '', data, columns, defaultPageSize = 5, onClic
                     <h3>{title}&nbsp;Maintenance </h3>
                     <div>
                         <ButtonIcons color="dark" title="Download template" icon={<i class="fas fa-download"></i>} onClick={() => onClickDownload(title)}/>
-                        <ButtonIcons color="success" title="Insert file" icon={<i class="fas fa-upload"></i>}/>
+                        <ButtonIcons color="success" title="Insert file" icon={<i class="fas fa-upload"></i>} onClick={() => onClickUpload(title)} />
                     </div>
                 </CardTitle>
                 <CardBody>

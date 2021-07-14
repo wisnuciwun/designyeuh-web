@@ -1,12 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Dropdown } from 'react-bootstrap'
-import { ModalBody, Tooltip } from 'reactstrap'
+import { Tooltip } from 'reactstrap'
 import Axios from '../helpers/axios'
 import Preview from '../views/Modals/Preview'
 import moment from 'moment'
-import { Modal } from 'bootstrap'
-import ButtonIcons from './ButtonIcon'
 import { API_URL_DOWNLOAD_IMAGES, API_URL_DOWNLOAD_RESUMES } from '../constants/Constants'
 import ImageDownloadOptions from '../views/Modals/ImageDownloadOptions'
 
@@ -52,7 +50,7 @@ class ImageComponent extends Component {
         })
     }
 
-    procInfo = (value) => 
+    procInfo = () => 
     {
         this.setState({
             toggleInfo:{
@@ -100,11 +98,11 @@ class ImageComponent extends Component {
                         this.onClickDownload(this.props.downlink.link_Pc)}}><i class="far fa-save"></i></Dropdown.Item>
                     <Dropdown.Item className="padding-item-dropdown btn-custom-color" id="info" ><i class="fas fa-info"></i></Dropdown.Item>
                     
-            <Tooltip style={{textAlign: "left"}} placement="right" isOpen={this.state.toggleInfo.toggle} target="info" toggle={this.procInfo}>
-            {this.props.name}<br/>
-            {moment(this.props.date).format("DD-MM-YYYY")}<br/>
-            {this.props.author}<br/>
-            </Tooltip>
+                    <Tooltip style={{textAlign: "left"}} placement="right" isOpen={this.state.toggleInfo.toggle} target="info" toggle={this.procInfo}>
+                        {this.props.name}<br/>
+                        {moment(this.props.date).format("DD-MM-YYYY")}<br/>
+                        {this.props.author}<br/>
+                    </Tooltip>
                 </Dropdown.Menu>
             </Dropdown>
             <Preview purpose={this.props.purpose} class={this.props.purpose == "Images" ? "modal-body-preview" : ""} toggle={this.onClickModal} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path} imgNm={this.props.name}/>

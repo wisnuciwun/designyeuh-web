@@ -9,7 +9,7 @@ export default class Disclaimer extends Component {
                 <div style={{textAlign: "justify", textAlignLast: "left"}} className="d-flex justify-content-center">
                     <p style={{width: "66%"}}>
                     <b>INTRODUCTION</b><br/>
-                    The information and content provided by DesignYEUH (“we,” “us” or “our”) on designyeuh.com (the “Site”) is for sharing only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on the Site.
+                    The information and content provided by Designyeuh (“we,” “us” or “our”) on designyeuh.com (the “Site”) is for sharing only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on the Site.
                     Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of the site or reliance on any information provided on the site. Your use of the site and your reliance on any information on the site is solely at your own risk. This disclaimer was created using Termly’s disclaimer generator.
                     <br/>
                     <b>EXTERNAL LINKS DISCLAIMER FOR WEBSITE</b><br/>

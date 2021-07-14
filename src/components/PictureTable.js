@@ -8,7 +8,6 @@ function PictureTable({imgname, imgpath, imglink, imgdate, imgauthor, imgid, con
     let row2 = []
     let allOne = []
     let allTwo = []
-    let amountImg = imgid.length
 
     let divider = Math.ceil(imgname.length / constanta)
     

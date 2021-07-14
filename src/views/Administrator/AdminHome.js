@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import { Button, Card, CardBody, CardTitle, Modal, ModalHeader, ModalBody } from 'reactstrap'
-import ReactTable from 'react-table'
 import 'react-table/react-table.css'
-import { API_URL_DELETE_CONTRIBUTORS, API_URL_DELETE_DONATE, API_URL_DELETE_IMAGE, API_URL_DELETE_RESUME, API_URL_GET_CONTRIBUTORS, API_URL_GET_DONATE, API_URL_GET_IMAGES, API_URL_GET_RESUMES, API_URL_PUT_CONTRIBUTORS, API_URL_PUT_DONATE, API_URL_PUT_IMAGE, API_URL_PUT_RESUME, DOWNLOAD_TEMP_CONTRIBUTORS, DOWNLOAD_TEMP_DONATE, DOWNLOAD_TEMP_IMAGES, DOWNLOAD_TEMP_RESUMES } from '../../constants/Constants'
+import { API_URL_DELETE_CONTRIBUTORS, API_URL_DELETE_DONATE, API_URL_DELETE_IMAGE, API_URL_DELETE_RESUME, API_URL_GET_CONTRIBUTORS,
+API_URL_GET_DONATE, API_URL_GET_IMAGES, API_URL_GET_RESUMES, API_URL_POST_CONTRIBUTORS, API_URL_POST_DONATE, API_URL_POST_IMAGES,
+API_URL_POST_RESUMES, API_URL_PUT_CONTRIBUTORS, API_URL_PUT_DONATE, API_URL_PUT_IMAGE, API_URL_PUT_RESUME, DOWNLOAD_TEMP_CONTRIBUTORS,
+DOWNLOAD_TEMP_DONATE, DOWNLOAD_TEMP_IMAGES, DOWNLOAD_TEMP_RESUMES } from '../../constants/Constants'
 import Axios from '../../helpers/axios'
-import { procContributorColumn, procDonateColumn, procImageColumn, procResumeColumn } from '../../constants/TableColumns'
-import { Row } from 'react-bootstrap'
-import ButtonIcons from '../../components/ButtonIcon'
+import { procContributorColumn, procContributorInsert, procDonateColumn, procDonateInsert, procImageColumn, procResumeColumn, procResumeInsert } from '../../constants/TableColumns'
 import MaintenanceCard from '../../components/MaintenanceCard'
-import InputField from '../../components/InputField'
-import InputsModal from '../../components/InputsModal'
-import Loading from '../../components/Loading'
-import { ErrorAlert, SuccesAlert } from '../../components/Alerts'
+import InputsModal from '../Modals/InputsModal'
+import { ErrorAlert, QuestionAlert, SuccesAlert } from '../../components/Alerts'
 import { ExcelRenderer } from 'react-excel-renderer';
+import TableModal from '../Modals/TableModal'
 
 export class AdminHome extends Component {
     
@@ -26,12 +24,21 @@ export class AdminHome extends Component {
                 type: '',
                 isOpen: false
             },
+            openModalTable: {
+                isOpenResume: false,
+                isOpenDonate: false,
+                isOpenContribute: false,
+                isOpenImage: false
+            },
             url: '',
+            modalUploadType: '',
             resumes: [],
             images: [],
             contributors: [],
             donations: [],
             users: [],
+            readyToInsert: [],
+            selectedType : {},
             selectedModal: {
                 title: ['id', 'link', 'title', 'downloaded','uploadDate', 'author', 'filename'],
                 value: ['', '', '', '', '', '', '']
@@ -51,66 +58,60 @@ export class AdminHome extends Component {
             donationModal: {
                 title: ['id', 'payment', 'imgLink'],
                 value: ['', '', '',]
+            },
+            resumeInsert: {
+                title: ['title','filename', 'link', 'author'],
+                values: ['','','','']
+            },
+            imageInsert: {
+                title: ['title','filename', 'link', 'author'],
+                values: ['','','','']
+            },
+            contributorInsert: {
+                title: ['name','instagram','facebook', 'twitter', 'creation', 'imgLink', 'address'],
+                values: ['','','','','','','']
+            },
+            donateInsert: {
+                title: ['payment','imgLink'],
+                values: ['','']
             }
         }
     }
 
-    // procFileHandler = (event) => {
-    //     let fileObj = event.target.files[0];
+    procFileHandler = (event) => {
+        let names = this.state.selectedType.title
+        let values = this.state.selectedType.values
+        
+        let fileObj = event.target.files[0];
+        this.onClickOpenModalUpload()
     
-    //     ExcelRenderer(fileObj, (err, resp) => {
-    //       if(err){
-    //         console.log(err);
-    //       }
-    
-    //       else{
-    //         if(resp.cols.length == 6)
-    //         {
-    //           for (let i = 2; i < resp.rows.length; i++) {
-    //             let temp = {
-    //               brand: resp.rows[i][1],
-    //               jumlah: resp.rows[i][3],
-    //               lokasi: resp.rows[i][4],
-    //               tahunUnit: resp.rows[i][2],
-    //               unitType: resp.rows[i][0],
-    //               statusPinjam: resp.rows[i][5]
-    //             }
-    
-    //             if (temp.brand != null && temp.jumlah != null && temp.lokasi != null && temp.tahunUnit != null
-    //               && temp.unitType != null && temp.statusPinjam != null)
-    //             {
-    //             this.setState(state => {
-    //               const populasiUnit = [...state.populasiUnit, temp];
-    //               return {
-    //                 populasiUnit,
-    //                 temp: {
-    //                   brand: '',
-    //                   jumlah: '',
-    //                   lokasi: '',
-    //                   tahunUnit: '',
-    //                   unitType: '',
-    //                   statusPinjam: ''
-    //                 }
-    //               };
-    
-    //             });
-    //             }
-    //           }
-    //         }else {
-    //           Swal.fire({
-    //             type: 'warning',
-    //             title: 'Oops...',
-    //             text: 'Template Tidak Sesuai!',
-    //           })
-    
-    //         }
-    
-    //       }
-    //     }, event.target.value = ''
-    //     );
-    
-    //   }
-    
+        ExcelRenderer(fileObj, (err, resp) => {
+          if(err)
+          {
+            console.log(err);
+          }
+          else
+          {
+            for (let i = 1; i < resp.rows.length; i++) 
+            {
+                for (let z = 0; z < names.length; z++) { values[z] = resp.rows[i][z] }
+
+                let jsonEntries = new Map()
+                jsonEntries.set(names, values)                     
+                let temp = Object.assign(...names.map((k, i) => ({[k]: values[i]})))
+        
+                this.setState(state => {
+                    const readyToInsert = [...state.readyToInsert, temp];
+                    temp = Object.assign(...names.map((k,i) => ({[k]: ''})))
+                    return {readyToInsert, temp}
+                })
+            }
+          }
+        }, 
+        event.target.value = '',
+        this.setState({readyToInsert: []})
+        )
+      }
 
     onClickDownload = (val) => {
 
@@ -137,8 +138,31 @@ export class AdminHome extends Component {
         }, 1000);
     }
 
-    onClickUpload = () => {
-        this.uploadFile.current.click()
+    onClickUpload = (type) => {
+        let { resumeInsert, imageInsert, contributorInsert, donateInsert } = this.state
+        let stateSet
+
+        switch (type) {
+            case "Resume":
+                stateSet = resumeInsert
+                break;
+            case "Image":
+                stateSet = imageInsert
+                break;
+            case "Contributor":
+                stateSet = contributorInsert
+                break;
+            case "Donation":
+                stateSet = donateInsert
+                break;
+            default:
+                break;
+        }
+        
+        this.setState({
+            selectedType: stateSet,
+            modalUploadType: type
+        }, () => this.uploadFile.current.click())
     }
 
     onClickOpenModal = (val, id) => {
@@ -148,6 +172,45 @@ export class AdminHome extends Component {
                 isOpen: !this.state.openModal.isOpen
             }
         }, () => this.onChangeModalData(id))
+    }
+
+    onClickOpenModalUpload = () => {
+        let { isOpenResume, isOpenDonate, isOpenImage, isOpenContribute } = this.state.openModalTable
+
+        switch (this.state.modalUploadType) {
+            case "Resume":
+                this.setState({
+                    openModalTable: {
+                    isOpenResume: !isOpenResume
+                },
+                url: API_URL_POST_RESUMES
+            })
+            break;
+            case "Image":
+                this.setState({openModalTable: {
+                    isOpenImage: !isOpenImage
+                },
+                url: API_URL_POST_IMAGES
+            })
+            break;
+            case "Contributor":
+                this.setState({openModalTable: {
+                    isOpenContribute: !isOpenContribute
+                },
+                url: API_URL_POST_CONTRIBUTORS
+            })
+            break;
+            case "Donation":
+                this.setState({openModalTable: {
+                    isOpenDonate: !isOpenDonate
+                },
+                url: API_URL_POST_DONATE
+            })
+            break;
+
+            default:
+            break;
+        }
     }
 
     procUpdateDataSwitchCase = () => {
@@ -236,6 +299,15 @@ export class AdminHome extends Component {
         })        
     }
 
+    onClickUploadData = async () => {
+        let { url } = this.state
+        let obj = this.state.readyToInsert
+
+        await Axios.post(`${url}`, obj)
+        .then(SuccesAlert())
+        .catch(err => ErrorAlert(err))
+    }
+
     putTableData = async () => {
         let { url } = this.state
         let stateSet = this.procUpdateDataSwitchCase()
@@ -274,27 +346,19 @@ export class AdminHome extends Component {
     }
 
     delResume = async (val) => {
-        await Axios.delete(`${API_URL_DELETE_RESUME}?id=${val}`)
-        .then(SuccesAlert())
-        .catch(err => ErrorAlert(err))
+        QuestionAlert({apiUrl:`${API_URL_DELETE_RESUME}?id=${val}`, axiosCommand:'delete'})
     }
 
     delImage = async (val) => {
-        await Axios.delete(`${API_URL_DELETE_IMAGE}?id=${val}`)
-        .then(SuccesAlert())
-        .catch(err => ErrorAlert(err))
+        QuestionAlert({apiUrl:`${API_URL_DELETE_IMAGE}?id=${val}`, axiosCommand:'delete'})
     }
 
     delDonation = async (val) => {
-        await Axios.delete(`${API_URL_DELETE_DONATE}?id=${val}`)
-        .then(SuccesAlert())
-        .catch(err => ErrorAlert(err))
+        QuestionAlert({apiUrl:`${API_URL_DELETE_DONATE}?id=${val}`, axiosCommand:'delete'})
     }
 
-    delContributor = async (val) => {
-        await Axios.delete(`${API_URL_DELETE_CONTRIBUTORS}?id=${val}`)
-        .then(SuccesAlert())
-        .catch(err => ErrorAlert(err))
+    delContributor = (val) => {
+        QuestionAlert({apiUrl:`${API_URL_DELETE_CONTRIBUTORS}?id=${val}`, axiosCommand:'delete'})
     }
 
     componentDidMount = () => {
@@ -306,20 +370,38 @@ export class AdminHome extends Component {
     }
     
     render() {
-        let { resumes, images, donations, contributors, openModal, fileDownload } = this.state        
+        let { resumes, images, donations, contributors, openModal, fileDownload, readyToInsert, openModalTable } = this.state
 
         let resumeColumn = procResumeColumn(this.delResume, this.onClickOpenModal)
         let imageColumn = procImageColumn(this.delImage, this.onClickOpenModal)
         let contributorColumn = procContributorColumn(this.delContributor, this.onClickOpenModal)
         let donateColumn = procDonateColumn(this.delDonation, this.onClickOpenModal)
 
+        let resumeInsertColumn = procResumeInsert()
+        let donateInsertColumn = procDonateInsert()
+        let contributorInsertColumn = procContributorInsert()
+        let donationInsertColumn = procDonateInsert()
+
+        let tableTitles = ['Resume', 'Image', 'Contributor', 'Donation']
+        let tableData = [resumes, images, contributors, donations]
+        let uploadDataColumns = [resumeInsertColumn, donateInsertColumn, contributorInsertColumn, donationInsertColumn]
+        let modalUploadToggles = [openModalTable.isOpenResume, openModalTable.isOpenImage, openModalTable.isOpenContribute, openModalTable.isOpenDonate]
+        let columns = [resumeColumn, imageColumn, contributorColumn, donateColumn]
+
+        let MaintenanceCardArray = []
+        let tableModalArray = []
+
+        for (let i = 0; i < tableTitles.length; i++) {
+            MaintenanceCardArray.push(<MaintenanceCard onChangeUpload={this.procFileHandler} onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title={tableTitles[i]} data={tableData[i]} columns={columns[i]} />)
+        }
+
+        for (let j = 0; j < tableTitles.length; j++) {
+            tableModalArray.push(<TableModal isOpen={modalUploadToggles[j]} toggle={this.onClickOpenModalUpload} columns={uploadDataColumns[j]} data={readyToInsert} onClickUpload={this.onClickUploadData} />)            
+        }
+
         return (
             <div>
-                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Resume' data={resumes} columns={resumeColumn} />
-                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Image' data={images} columns={imageColumn} />
-                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Contributor' data={contributors} columns={contributorColumn} />
-                <MaintenanceCard onClickDownload={this.onClickDownload} onClickUpload={this.onClickUpload} downloadRef={this.downloadFile} uploadRef={this.uploadFile} fileDownload={fileDownload} title='Donation' data={donations} columns={donateColumn} />
-
+                {MaintenanceCardArray}
                 <InputsModal 
                 toggle={this.onClickOpenModal}
                 openModal={openModal}
@@ -327,6 +409,7 @@ export class AdminHome extends Component {
                 onChange={this.onChangeModalValues}
                 putTableData={this.putTableData}
                 />
+                {tableModalArray}
             </div>
         )
     }

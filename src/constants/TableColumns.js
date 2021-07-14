@@ -1,6 +1,5 @@
 import moment from 'moment'
-import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import ButtonIcons from '../components/ButtonIcon'
 
@@ -243,4 +242,136 @@ export function procDonateColumn(onClickDelete, onClickOpenModal) {
         }, 
     ]
 return data
+}
+
+
+export function procResumeInsert() {
+    let data = [
+        {
+            Header: 'Title',
+            accessor: 'title',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Filename',
+            accessor: 'filename',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Download Link',
+            accessor: 'link',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+
+        },
+        {
+            Header: 'Author',
+            accessor: 'author',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+    ]
+    return data
+}
+
+export function procImageInsert() {
+    let data = [
+        {
+            Header: 'Title',
+            accessor: 'title',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Filename',
+            accessor: 'filename',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Download Link',
+            accessor: 'link',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+
+        },
+        {
+            Header: 'Author',
+            accessor: 'author',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+    ]
+    return data
+}
+
+export function procContributorInsert() {
+    let data = [
+        {
+            Header: 'Name',
+            accessor: 'name',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Instagram',
+            accessor: 'instagram',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Facebook',
+            accessor: 'facebook',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+
+        },
+        {
+            Header: 'Twitter',
+            accessor: 'twitter',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Creation',
+            accessor: 'creation',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+
+        },
+        {
+            Header: 'Image Link',
+            accessor: 'imgLink',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Address',
+            accessor: 'address',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+    ]
+    return data
+}
+
+export function procDonateInsert() {
+    let data = [
+        {
+            Header: 'Payment Name',
+            accessor: 'payment',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Image Link',
+            accessor: 'imgLink',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+
+    ]
+    return data
 }

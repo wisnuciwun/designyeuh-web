@@ -4,7 +4,6 @@ import { Row } from 'reactstrap';
 import Campaign from '../components/Campaign';
 import symbol from '../public/logo/logo_symbol.png'
 import MainModals from '../views/MainModals';
-import ingredient from '../public/logo/ingredients.jpg'
 
 export default class DefaultFooter extends Component {
     constructor(props) {
@@ -38,32 +37,29 @@ export default class DefaultFooter extends Component {
                             return(<p onClick={() => this.onClickViewMisc(x)}>{x}</p>)})
                         }
                      </div>
-                <div className="col-5 align-self-center" style={{ opacity: "40%", textAlignLast: "justify", fontSize: "80%"}}>
-                    <Campaign/>
+                    <div className="col-5 align-self-center" style={{ opacity: "40%", textAlignLast: "justify", fontSize: "80%"}}>
+                        <Campaign/>
+                    </div>
+                    <div className="col-3 align-self-center" style={{textAlign: "center"}}>
+                        <span style={{fontSize: "100%"}} className="d-none d-lg-block" >
+                            <h2 style={{textAlign: "right"}}><i className="fas fa-hamburger"></i>&nbsp;&nbsp;<b>Ingredients</b></h2>
+                            <p style={{textAlign: "right"}}>
+                                Raspberry Pi 4B (4/16 GB)<br/>
+                                React JS<br/>
+                                .Net<br/>
+                                MariaDB<br/>
+                                FreeDDNS<br/>
+                                OnlyDomains<br/>
+                            </p>
+                        </span>
                 </div>
-                <div className="col-3 align-self-center" style={{textAlign: "center"}}>
-                <span style={{fontSize: "100%"}} className="d-none d-lg-block" >
-                    <h2 style={{textAlign: "right"}}><i className="fas fa-hamburger"></i>&nbsp;&nbsp;<b>Ingredients</b></h2>
-                    <p style={{textAlign: "right"}}>
-                        Raspberry Pi 4B (4/16 GB)<br/>
-                        React JS<br/>
-                        .Net<br/>
-                        MariaDB<br/>
-                        FreeDDNS<br/>
-                        OnlyDomains<br/>
-                    </p>
-                    </span>
-                </div>
-
                 <div className="col-2 align-self-center">
                      <div className="rounded-circle z-depth-0 float-right" style={{textAlign: 'right', backgroundColor: 'white', padding: "20px"}}>
                          <Image src={symbol} style={{height: '130px', width: '130px'}}/>
                      </div>
                      <MainModals toggle={() => this.props.toggle("")}/>
                 </div>
-
                 </Row>
-
             </div>
         )
     }
