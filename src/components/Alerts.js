@@ -2,12 +2,12 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import Axios from '../helpers/axios'
 
-export function SuccesAlert(msg = "") {
+export function SuccesAlert({msg = "", confirmButton = true}) {
     Swal.fire({
         titleText: "Success",
         icon: "success",
         text: msg,
-        showConfirmButton: true
+        showConfirmButton: confirmButton
     })
 }
 
@@ -48,4 +48,15 @@ export function QuestionAlert({msg = '', apiUrl, axiosCommand}) {
             }
         }
     })    
+}
+
+export async function ApiCommands({cmd = 'GET', url, obj = null, todo}) {
+    await Axios({
+        method: cmd,
+        url: url,
+        data: obj
+    }).then(res => {
+        todo(res)
+    })
+    .catch(err => ErrorAlert(err))
 }
