@@ -53,14 +53,14 @@ export function procResumeColumn(onClickDelete, onClickOpenModal) {
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('resume', props.value)} color="info" width="40px" icon={<i class="far fa-edit"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('resume', props.value)} color="info" width="40px" icon={<i className="far fa-edit"></i>}/>
         }, 
         {
             Header: '',
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i class="fas fa-eraser"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i className="fas fa-eraser"></i>}/>
         }, 
     ]
 return data
@@ -122,14 +122,14 @@ export function procImageColumn(onClickDelete, onClickOpenModal) {
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('image', props.value)} color="info" width="40px" icon={<i class="far fa-edit"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('image', props.value)} color="info" width="40px" icon={<i className="far fa-edit"></i>}/>
         }, 
         {
             Header: '',
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i class="fas fa-eraser"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i className="fas fa-eraser"></i>}/>
         }, 
     ]
 return data
@@ -191,14 +191,14 @@ export function procContributorColumn(onClickDelete, onClickOpenModal) {
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('contributor', props.value)} color="info" width="40px" icon={<i class="far fa-edit"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('contributor', props.value)} color="info" width="40px" icon={<i className="far fa-edit"></i>}/>
         }, 
         {
             Header: '',
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i class="fas fa-eraser"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i className="fas fa-eraser"></i>}/>
         }, 
     ]
 return data
@@ -231,14 +231,14 @@ export function procDonateColumn(onClickDelete, onClickOpenModal) {
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('donation', props.value)} color="info" width="40px" icon={<i class="far fa-edit"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickOpenModal('donation', props.value)} color="info" width="40px" icon={<i className="far fa-edit"></i>}/>
         }, 
         {
             Header: '',
             filterable: false,
             minWidth: 60,
             accessor: 'id',
-            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i class="fas fa-eraser"></i>}/>
+            Cell: props => <ButtonIcons onClick={() => onClickDelete(props.value)} color="danger" width="40px" icon={<i className="fas fa-eraser"></i>}/>
         }, 
     ]
 return data

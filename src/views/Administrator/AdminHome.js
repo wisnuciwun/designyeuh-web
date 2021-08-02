@@ -8,9 +8,11 @@ import Axios from '../../helpers/axios'
 import { procContributorColumn, procContributorInsert, procDonateColumn, procDonateInsert, procImageColumn, procResumeColumn, procResumeInsert } from '../../constants/TableColumns'
 import MaintenanceCard from '../../components/MaintenanceCard'
 import InputsModal from '../Modals/InputsModal'
-import { ErrorAlert, QuestionAlert, SuccesAlert } from '../../components/Alerts'
+import { ApiCommands, ErrorAlert, QuestionAlert, SuccesAlert } from '../../components/Alerts'
 import { ExcelRenderer } from 'react-excel-renderer';
 import TableModal from '../Modals/TableModal'
+import { getContributors, getDonations, getImages, getResumes } from '../../config/redux/rootAction'
+import { connect } from 'react-redux'
 
 export class AdminHome extends Component {
     
@@ -32,10 +34,7 @@ export class AdminHome extends Component {
             },
             url: '',
             modalUploadType: '',
-            resumes: [],
-            images: [],
-            contributors: [],
-            donations: [],
+            selectedMenu: '',
             users: [],
             readyToInsert: [],
             selectedType : {},
@@ -180,6 +179,7 @@ export class AdminHome extends Component {
         switch (this.state.modalUploadType) {
             case "Resume":
                 this.setState({
+                    selectedMenu: 'resume',
                     openModalTable: {
                     isOpenResume: !isOpenResume
                 },
@@ -187,21 +187,27 @@ export class AdminHome extends Component {
             })
             break;
             case "Image":
-                this.setState({openModalTable: {
+                this.setState({
+                    selectedMenu: 'image',
+                    openModalTable: {
                     isOpenImage: !isOpenImage
                 },
                 url: API_URL_POST_IMAGES
             })
             break;
             case "Contributor":
-                this.setState({openModalTable: {
+                this.setState({
+                    selectedMenu: 'contributor',
+                    openModalTable: {
                     isOpenContribute: !isOpenContribute
                 },
                 url: API_URL_POST_CONTRIBUTORS
             })
             break;
             case "Donation":
-                this.setState({openModalTable: {
+                this.setState({
+                    selectedMenu: 'donation',
+                    openModalTable: {
                     isOpenDonate: !isOpenDonate
                 },
                 url: API_URL_POST_DONATE
@@ -218,19 +224,19 @@ export class AdminHome extends Component {
         switch (this.state.openModal.type) {
             case 'resume':
                 stateSet = this.state.resumeModal
-                this.setState({url: API_URL_PUT_RESUME})
+                this.setState({url: API_URL_PUT_RESUME, selectedMenu: 'resume'})
                 break;
             case 'image':
                 stateSet = this.state.imageModal
-                this.setState({url: API_URL_PUT_IMAGE})
+                this.setState({url: API_URL_PUT_IMAGE, selectedMenu: 'image'})
                 break;
             case 'contributor':
                 stateSet = this.state.contributorModal
-                this.setState({url: API_URL_PUT_CONTRIBUTORS})
+                this.setState({url: API_URL_PUT_CONTRIBUTORS, selectedMenu: 'contributor'})
                 break;
             case 'donation':
                 stateSet = this.state.donationModal
-                this.setState({url: API_URL_PUT_DONATE})
+                this.setState({url: API_URL_PUT_DONATE, selectedMenu: 'donation'})
                 break;
 
             default:
@@ -243,6 +249,7 @@ export class AdminHome extends Component {
     }
 
     onChangeModalData = (id) => {
+        let { resumes, images, contributors, donations } = this.props
         if(id != null)
         {
             let findId
@@ -252,16 +259,16 @@ export class AdminHome extends Component {
 
             switch (this.state.openModal.type) {
                 case 'resume':
-                    bigData = this.state.resumes
+                    bigData = resumes
                     break;
                 case 'image':
-                    bigData = this.state.images
+                    bigData = images
                     break;
                 case 'contributor':
-                    bigData = this.state.contributors
+                    bigData = contributors
                     break;
                 case 'donation':
-                    bigData = this.state.donations
+                    bigData = donations
                     break;
 
                 default:
@@ -304,7 +311,11 @@ export class AdminHome extends Component {
         let obj = this.state.readyToInsert
 
         await Axios.post(`${url}`, obj)
-        .then(SuccesAlert())
+        .then(
+            SuccesAlert(),
+            this.onClickOpenModalUpload(),
+            this.onChangeUpdateData()
+        )
         .catch(err => ErrorAlert(err))
     }
 
@@ -315,50 +326,87 @@ export class AdminHome extends Component {
         let jsonEntries = new Map()
 
         for (let i = 0; i < changedState.length; i++) {
-            jsonEntries.set(stateSet.title[i], stateSet.value[i])             
+            jsonEntries.set(stateSet.title[i], stateSet.value[i])
         }
 
         let finalData = Object.fromEntries(jsonEntries)
 
         await Axios.put(`${url}?id=${finalData.id}`, finalData)
-        .then(SuccesAlert())
+        .then(
+            SuccesAlert(),
+            this.onClickOpenModal(),
+            this.onChangeUpdateData()
+        )
         .catch((err) => ErrorAlert(err))
     }
 
+    onChangeUpdateData = () => {
+        setTimeout(async () => {
+            switch (this.state.selectedMenu) {
+                case 'resume':
+                    await this.getResumeList()
+                    break;
+                case 'image':
+                    await this.getImageList()
+                    break;
+                case 'contributor':
+                    await this.getContributorList()
+                    break;
+                case 'donation':
+                    await this.getDonationList()
+                    break;
+                default:
+                    break;
+            }    
+        }, 2000);
+    }
+
     getResumeList = async () => {
+        let {dispatch} = this.props
         await Axios.get(`${API_URL_GET_RESUMES}`)
-        .then(res => this.setState({...this.state, resumes: res.data}))
+        .then(res => dispatch(getResumes(res.data)))
+        .catch(err => console.log(err))
     }
 
     getImageList = async () => {
+        let {dispatch} = this.props
         await Axios.get(`${API_URL_GET_IMAGES}`)
-        .then(res => this.setState({...this.state, images: res.data}))
+        .then(res => dispatch(getImages(res.data)))
+        .catch(err => console.log(err))
     }
 
     getDonationList = async () => {
+        let {dispatch} = this.props
         await Axios.get(`${API_URL_GET_DONATE}`)
-        .then(res => this.setState({...this.state, donations: res.data}))
+        .then(res => dispatch(getDonations(res.data)))
+        .catch(err => console.log(err))
     }
 
     getContributorList = async () => {
+        let {dispatch} = this.props
         await Axios.get(`${API_URL_GET_CONTRIBUTORS}`)
-        .then(res => this.setState({...this.state, contributors: res.data}))
+        .then(res => dispatch(getContributors(res.data)))
+        .catch(err => console.log(err))
     }
 
     delResume = async (val) => {
         QuestionAlert({apiUrl:`${API_URL_DELETE_RESUME}?id=${val}`, axiosCommand:'delete'})
+        this.setState({selectedMenu: "resume"}, () => this.onChangeUpdateData())
     }
 
     delImage = async (val) => {
         QuestionAlert({apiUrl:`${API_URL_DELETE_IMAGE}?id=${val}`, axiosCommand:'delete'})
+        this.setState({selectedMenu: "image"}, () => this.onChangeUpdateData())
     }
 
     delDonation = async (val) => {
         QuestionAlert({apiUrl:`${API_URL_DELETE_DONATE}?id=${val}`, axiosCommand:'delete'})
+        this.setState({selectedMenu: "donation"}, () => this.onChangeUpdateData())
     }
 
     delContributor = (val) => {
         QuestionAlert({apiUrl:`${API_URL_DELETE_CONTRIBUTORS}?id=${val}`, axiosCommand:'delete'})
+        this.setState({selectedMenu: "contributor"}, () => this.onChangeUpdateData())
     }
 
     componentDidMount = () => {
@@ -370,7 +418,8 @@ export class AdminHome extends Component {
     }
     
     render() {
-        let { resumes, images, donations, contributors, openModal, fileDownload, readyToInsert, openModalTable } = this.state
+        let { openModal, fileDownload, readyToInsert, openModalTable } = this.state
+        let { resumes, images, contributors, donations } = this.props
 
         let resumeColumn = procResumeColumn(this.delResume, this.onClickOpenModal)
         let imageColumn = procImageColumn(this.delImage, this.onClickOpenModal)
@@ -415,4 +464,5 @@ export class AdminHome extends Component {
     }
 }
 
-export default AdminHome
+function mapStateToProps(state){ return state }
+export default connect(mapStateToProps)(AdminHome)

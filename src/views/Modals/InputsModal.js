@@ -11,7 +11,7 @@ function InputsModal({data = {}, onChange, openModal, toggle, putTableData}) {
         inputs.push(values)
     }
     return (
-        <Modal isOpen={openModal.isOpen} toggle={() => toggle(openModal.type)}>
+        <Modal centered isOpen={openModal.isOpen} toggle={() => toggle(openModal.type)}>
         <ModalHeader>
             Update Data System
         </ModalHeader>

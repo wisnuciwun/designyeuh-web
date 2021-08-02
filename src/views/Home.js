@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Axios from '../helpers/axios';
 import ContentRow from '../components/ContentRow';
 import { API_URL_SORT_POPULARITY_IMAGES, API_URL_SORT_POPULARITY_RESUMES, API_URL_SORT_TIME_IMAGES, API_URL_SORT_TIME_RESUMES } from '../constants/Constants';
+import { connect } from 'react-redux';
 
 export class Home extends Component {
     constructor(props) {
@@ -165,13 +166,13 @@ export class Home extends Component {
         
         for (let z = 0; z < sortArrayResume.length; z++) {
             let x = sortArrayResume[z]
-            let val = <ContentRow purpose="Resumes" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} imgId={x.ShowId} imgAuthor={x.ShowAuthor} imgDate={x.ShowDate} title={titleResume[z]}  icon="fas fa-file-alt" />    
+            let val = <ContentRow key={z} purpose="Resumes" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} imgId={x.ShowId} imgAuthor={x.ShowAuthor} imgDate={x.ShowDate} title={titleResume[z]}  icon="fas fa-file-alt" />    
             contents.push(val)
         }
 
         for (let z = 0; z < sortArrayImg.length; z++) {
             let x = sortArrayImg[z]
-            let val = <ContentRow purpose="Images" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} imgId={x.ShowId} imgAuthor={x.ShowAuthor} imgDate={x.ShowDate} title={titleImg[z]} icon="far fa-images" />    
+            let val = <ContentRow key={z} purpose="Images" constanta={template.perPage} imgName={x.ShowImg} imgPath={x.ShowPath} imgLink={x.ShowLink} imgId={x.ShowId} imgAuthor={x.ShowAuthor} imgDate={x.ShowDate} title={titleImg[z]} icon="far fa-images" />    
             contents.push(val)
         }
 
@@ -183,4 +184,8 @@ export class Home extends Component {
     }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+    return state
+  }
+
+export default connect(mapStateToProps)(Home)

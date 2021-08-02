@@ -1,7 +1,7 @@
 import React from 'react'
 import PictureTableSingle from './PictureTableSingle'
 
-function ContentRow({imgName, imgPath, imgLink, imgId, imgAuthor, imgDate, title, icon, constanta, purpose = ""}) {
+function ContentRow({imgName, imgPath, imgLink, imgId, imgAuthor, imgDate, title, icon, constanta, purpose = "", key}) {
     return (
             <span className="input-margin">
                 <p className="h4 grey-text"><i className={icon}></i>&nbsp;&nbsp;{title}</p>

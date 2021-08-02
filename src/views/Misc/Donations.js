@@ -39,7 +39,6 @@ class Donations extends Component {
         })
 
         return(
-            // &nbsp; <i class="fas fa-coffee"></i>&nbsp;
             <div  className="fadeIn-screen" >
                 <div style={{textAlign: "center"}} className="d-flex justify-content-center">
                     <p style={{width: '66%'}} >Our content will always be free for you, because we love to help people. But sometimes we thirsty, dude. A cup of coffe might help us a lot. Might one of these QR Code helps you to spend your excess money</p>

@@ -4,12 +4,13 @@ var apibasedonation = `yB90ygbgjTjhdcf%gFhD0n!LJ`
 var apibasecontributors = `hbfaj7bbn%jfbHb$QnCnTPP7`
 var apibaseusers = `byg7Gvd%hfjam&n8BEU5r77Q`
 var apiauth = `cBdhiu^jfw%bfah*8TC4uTdd9f`
+var apibaseadmin = `pehYG75jb$9*6rQWx^A4mOpW`
 
 module.exports = {
     API_URL_GET_RESUMES : `${apibaseresume}/85Ac17eClf`,
-    API_URL_POST_RESUMES : `${apibaseresume}/TwcHvQWwS6`,
-    API_URL_DELETE_RESUME : `${apibaseresume}/5FCFfRqbqO`,
-    API_URL_PUT_RESUME : `${apibaseresume}/KROBFzOhPN`,
+    API_URL_POST_RESUMES : `${apibaseadmin}/TwcHvQWwS6`,
+    API_URL_DELETE_RESUME : `${apibaseadmin}/5FCFfRqbqO`,
+    API_URL_PUT_RESUME : `${apibaseadmin}/KROBFzOhPN`,
     API_URL_SORT_TIME_RESUMES : `${apibaseresume}/r2ImyKmxUZ`,
     API_URL_SORT_POPULARITY_RESUMES : `${apibaseresume}/87stPpQrZy`,
     API_URL_ALL_RESUMES : `${apibaseresume}/a1PfYcu7AB`,
@@ -17,9 +18,9 @@ module.exports = {
     API_URL_DOWNLOAD_RESUMES : `${apibaseresume}/8CudWiLDO7`,
 
     API_URL_GET_IMAGES : `${apibaseimage}/kn69JVJH1a`,
-    API_URL_POST_IMAGES : `${apibaseimage}/dik25dWhR6`,
-    API_URL_DELETE_IMAGE : `${apibaseimage}/dPSfTOsrEa`,
-    API_URL_PUT_IMAGE : `${apibaseimage}/aNho5iy0Ve`,
+    API_URL_POST_IMAGES : `${apibaseadmin}/dik25dWhR6`,
+    API_URL_DELETE_IMAGE : `${apibaseadmin}/dPSfTOsrEa`,
+    API_URL_PUT_IMAGE : `${apibaseadmin}/aNho5iy0Ve`,
     API_URL_SORT_TIME_IMAGES : `${apibaseimage}/aCIJI6W7jp`,
     API_URL_SORT_POPULARITY_IMAGES : `${apibaseimage}/9gW6Mq21Q5`,
     API_URL_ALL_IMAGES : `${apibaseimage}/wPiArezdNl`,
@@ -27,24 +28,24 @@ module.exports = {
     API_URL_DOWNLOAD_IMAGES : `${apibaseimage}/WKc7kvvUhp`,
 
     API_URL_GET_DONATE : `${apibasedonation}/p94pWBtP7t`,
-    API_URL_POST_DONATE : `${apibasedonation}/ZwxxizLrn8`,
-    API_URL_DELETE_DONATE : `${apibasedonation}/GGLNfjOCVx`,
-    API_URL_PUT_DONATE : `${apibasedonation}/gBEK4VJDRV`,
+    API_URL_POST_DONATE : `${apibaseadmin}/ZwxxizLrn8`,
+    API_URL_DELETE_DONATE : `${apibaseadmin}/GGLNfjOCVx`,
+    API_URL_PUT_DONATE : `${apibaseadmin}/gBEK4VJDRV`,
 
     API_URL_GET_CONTRIBUTORS : `${apibasecontributors}/T3jS0WpBJP`,
-    API_URL_POST_CONTRIBUTORS : `${apibasecontributors}/Poh5V8QnZe`,
-    API_URL_DELETE_CONTRIBUTORS : `${apibasecontributors}/tRJV7SoSx5`,
-    API_URL_PUT_CONTRIBUTORS : `${apibasecontributors}/aTYM06FNYK`,
+    API_URL_POST_CONTRIBUTORS : `${apibaseadmin}/Poh5V8QnZe`,
+    API_URL_DELETE_CONTRIBUTORS : `${apibaseadmin}/tRJV7SoSx5`,
+    API_URL_PUT_CONTRIBUTORS : `${apibaseadmin}/aTYM06FNYK`,
 
     DOWNLOAD_TEMP_RESUMES : `/files/resume_insert_template.xlsx`,
     DOWNLOAD_TEMP_IMAGES : `/files/image_insert_template.xlsx`,
     DOWNLOAD_TEMP_CONTRIBUTORS : `/files/contributor_insert_template.xlsx`,
     DOWNLOAD_TEMP_DONATE : `/files/donation_insert_template.xlsx`,
 
-    API_URL_GET_USERS : `${apibaseusers}/6kJQ6Tqyzt`,
-    API_URL_POST_USERS  : `${apibaseusers}/q6gsc9mXIY`,
-    API_URL_PUT_USERS : `${apibaseusers}/SNhhB1KYCc`,
-    API_URL_DELETE_USERS : `${apibaseusers}/wlcBSH0EA1`,
+    API_URL_GET_USERS : `${apibaseadmin}/6kJQ6Tqyzt`,
+    API_URL_POST_USERS  : `${apibaseadmin}/q6gsc9mXIY`,
+    API_URL_PUT_USERS : `${apibaseadmin}/SNhhB1KYCc`,
+    API_URL_DELETE_USERS : `${apibaseadmin}/wlcBSH0EA1`,
 
     API_URL_REGISTER : `${apiauth}/MFwL8GPwO5`,
     API_URL_LOGIN  : `${apiauth}/0mCEPcpnzp`,

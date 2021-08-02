@@ -36,7 +36,7 @@ class DefaultLayout extends Component {
                         <Container style={{minHeight: "300px"}} fluid className="App lg">
                             <Switch>
                                 {routes.map((route, idx) => {
-                                    return route.component ? (
+                                    return route.component && route.authorize ? (
                                         <Route
                                         key={idx}
                                         path={route.path}

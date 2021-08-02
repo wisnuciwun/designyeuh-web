@@ -1,10 +1,12 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
+let token = Cookies.get('token')
 const defaultOptDev = {
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    //   "access-control-allow-origin" : "*",
-      headerType: 'JSON'
+      headerType: 'JSON',
+      'Authorization': `Bearer ${token}`
   }
 };
 

@@ -22,7 +22,7 @@ export default class Contacts extends Component {
                             <TextIcons text="Delta Cakung Apartemen Block CA Floor. 3 No. 8, East Jakarta" icon={<i className="fas fa-map-marker-alt"></i>}/>
                             <TextIcons text="designyeuh@gmail.com" icon={<i className="fas fa-envelope"></i>} />
                             <TextIcons text="@wissnuawardhamn" icon={<i className="fab fa-instagram-square"></i>}/>
-                            <TextIcons text="wisnuciwun" icon={<i class="fab fa-github-square"></i>}/>
+                            <TextIcons text="wisnuciwun" icon={<i className="fab fa-github-square"></i>}/>
                             <br/>
                             Thanks for coming, you're really nice person ! 
                         </div>

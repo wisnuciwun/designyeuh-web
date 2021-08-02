@@ -1,17 +1,28 @@
+import Cookies from 'js-cookie'
 import React from 'react'
 import Swal from 'sweetalert2'
 import Axios from '../helpers/axios'
 
-export function SuccesAlert({msg = "", confirmButton = true}) {
+export function SuccesAlert(msg = "", confirmButton = false) {
     Swal.fire({
         titleText: "Success",
         icon: "success",
         text: msg,
-        showConfirmButton: confirmButton
+        showConfirmButton: confirmButton,
+        timer: 2000
     })
 }
 
-export function ErrorAlert(msg) {
+export function ErrorAlert(msg = "") {
+    Swal.fire({
+        titleText: "Something wrong",
+        text: msg,
+        icon: "error",
+        showConfirmButton: true
+    })
+}
+
+export function ErrorWithApiNote(msg = "") {
     Swal.fire({
         titleText: "Something wrong",
         text: msg,
@@ -48,7 +59,7 @@ export function QuestionAlert({msg = '', apiUrl, axiosCommand}) {
             }
         }
     })    
-}
+} 
 
 export async function ApiCommands({cmd = 'GET', url, obj = null, todo}) {
     await Axios({
@@ -58,5 +69,7 @@ export async function ApiCommands({cmd = 'GET', url, obj = null, todo}) {
     }).then(res => {
         todo(res)
     })
-    .catch(err => ErrorAlert(err))
+    .catch(err => {
+        ErrorAlert(err)
+    })
 }

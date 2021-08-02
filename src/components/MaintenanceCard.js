@@ -14,16 +14,16 @@ function MaintenanceCard({title = '', data, columns, defaultPageSize = 5, onClic
                     <div>
                         <h3>{title}&nbsp;Maintenance </h3>
                         <div>
-                            <ButtonIcons color="dark" title="Download template" icon={<i class="fas fa-download"></i>} onClick={() => onClickDownload(title)}/>
-                            <ButtonIcons color="success" title="Insert file" icon={<i class="fas fa-upload"></i>} onClick={() => onClickUpload(title)} />
+                            <ButtonIcons color="dark" title="Download template" icon={<i className="fas fa-download"></i>} onClick={() => onClickDownload(title)}/>
+                            <ButtonIcons color="success" title="Insert file" icon={<i className="fas fa-upload"></i>} onClick={() => onClickUpload(title)} />
                         </div>
                     </div>
                 </CardTitle>
                 <CardTitle className="justify-content-between d-none d-lg-flex" style={{padding: '10px'}}>
                     <h3>{title}&nbsp;Maintenance </h3>
                     <div>
-                        <ButtonIcons color="dark" title="Download template" icon={<i class="fas fa-download"></i>} onClick={() => onClickDownload(title)}/>
-                        <ButtonIcons color="success" title="Insert file" icon={<i class="fas fa-upload"></i>} onClick={() => onClickUpload(title)} />
+                        <ButtonIcons color="dark" title="Download template" icon={<i className="fas fa-download"></i>} onClick={() => onClickDownload(title)}/>
+                        <ButtonIcons color="success" title="Insert file" icon={<i className="fas fa-upload"></i>} onClick={() => onClickUpload(title)} />
                     </div>
                 </CardTitle>
                 <CardBody>
