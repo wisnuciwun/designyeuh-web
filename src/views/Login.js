@@ -149,7 +149,7 @@ class Login extends Component {
         let login = this.state.login
 
         return (
-        <div className="app d-flex justify-content-center">
+        <div className="app d-flex justify-content-center login-zoom">
             <div className="vertical-center" style={{zIndex: "2"}}>
                 <div style={{zIndex: "1", fontSize: "28pt", opacity: "20%", textAlign: "center", textAlignLast: "justify"}}>
                     <Campaign/>

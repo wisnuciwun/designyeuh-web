@@ -281,3 +281,7 @@ code {
 .header-custom-menu:hover{
   background-color: whitesmoke !important;
 }
+
+.login-zoom{
+  zoom: 80%;
+}
