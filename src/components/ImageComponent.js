@@ -106,7 +106,7 @@ class ImageComponent extends Component {
                 </Dropdown.Menu>
             </Dropdown>
             <Preview purpose={this.props.purpose} className={this.props.purpose == "Images" ? "modal-body-preview" : ""} toggle={this.onClickModal} isOpen={this.state.togglePreview.toggle} imgFile={this.props.path} imgNm={this.props.name}/>
-            <ImageDownloadOptions toggle={this.onClickModalImgOpt} onClickDownload={this.onClickDownloadImage} isOpen={this.state.toggleImgOpt} imgLinkPc={this.props.downlink.link_Pc} imgLinkMobile={null} imgNm={this.props.name}/>
+            <ImageDownloadOptions toggle={this.onClickModalImgOpt} onClickDownload={this.onClickDownloadImage} isOpen={this.state.toggleImgOpt} imgLinkPc={this.props.downlink.link_Pc} imgLinkMobile={this.props.downlink.link_Mobile} imgNm={this.props.name}/>
         </td>
 
         )

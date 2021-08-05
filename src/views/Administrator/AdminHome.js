@@ -47,7 +47,7 @@ export class AdminHome extends Component {
                 value: ['', '', '', '', '', '', '']
             },
             imageModal: {
-                title: ['id', 'uploadDate', 'link_Mobile', 'link_Pc', 'downloaded', 'author', 'filename', 'title'],
+                title: ['id', 'uploadDate', 'link_Mobile', 'link', 'downloaded', 'author', 'filename', 'title'],
                 value: ['', '', '', '', '', '', '', '']
             },
             contributorModal: {

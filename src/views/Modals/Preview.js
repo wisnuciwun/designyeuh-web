@@ -3,7 +3,6 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 class Preview extends Component {
     render() {
-        const conf = {width: 400, height: 250, zoomWidth: 500, img: this.props.imgFile, zoomPosition: 'original'};
         return(
             <Modal centered className={this.props.class} toggle={this.props.toggle} isOpen={this.props.isOpen}>
                 <span className="d-flex justify-content-between"><span style={{ textAlign: "left", margin: "5px"}}>{this.props.imgNm}</span><i style={{ cursor: "pointer", textAlign: "right", margin: "5px"}} onClick={this.props.toggle} className="far fa-times-circle"></i></span>
