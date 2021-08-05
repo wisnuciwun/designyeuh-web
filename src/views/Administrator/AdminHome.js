@@ -5,7 +5,7 @@ API_URL_GET_DONATE, API_URL_GET_IMAGES, API_URL_GET_RESUMES, API_URL_POST_CONTRI
 API_URL_POST_RESUMES, API_URL_PUT_CONTRIBUTORS, API_URL_PUT_DONATE, API_URL_PUT_IMAGE, API_URL_PUT_RESUME, DOWNLOAD_TEMP_CONTRIBUTORS,
 DOWNLOAD_TEMP_DONATE, DOWNLOAD_TEMP_IMAGES, DOWNLOAD_TEMP_RESUMES } from '../../constants/Constants'
 import Axios from '../../helpers/axios'
-import { procContributorColumn, procContributorInsert, procDonateColumn, procDonateInsert, procImageColumn, procResumeColumn, procResumeInsert } from '../../constants/TableColumns'
+import { procContributorColumn, procContributorInsert, procDonateColumn, procDonateInsert, procImageColumn, procImageInsert, procResumeColumn, procResumeInsert } from '../../constants/TableColumns'
 import MaintenanceCard from '../../components/MaintenanceCard'
 import InputsModal from '../Modals/InputsModal'
 import { ApiCommands, ErrorAlert, QuestionAlert, SuccesAlert } from '../../components/Alerts'
@@ -63,7 +63,7 @@ export class AdminHome extends Component {
                 values: ['','','','']
             },
             imageInsert: {
-                title: ['title','filename', 'link', 'author'],
+                title: ['title','filename', 'link', 'link_Mobile', 'filename', 'author'],
                 values: ['','','','']
             },
             contributorInsert: {
@@ -427,13 +427,13 @@ export class AdminHome extends Component {
         let donateColumn = procDonateColumn(this.delDonation, this.onClickOpenModal)
 
         let resumeInsertColumn = procResumeInsert()
-        let donateInsertColumn = procDonateInsert()
+        let imageInsertColumn = procImageInsert()
         let contributorInsertColumn = procContributorInsert()
         let donationInsertColumn = procDonateInsert()
 
         let tableTitles = ['Resume', 'Image', 'Contributor', 'Donation']
         let tableData = [resumes, images, contributors, donations]
-        let uploadDataColumns = [resumeInsertColumn, donateInsertColumn, contributorInsertColumn, donationInsertColumn]
+        let uploadDataColumns = [resumeInsertColumn, imageInsertColumn, contributorInsertColumn, donationInsertColumn]
         let modalUploadToggles = [openModalTable.isOpenResume, openModalTable.isOpenImage, openModalTable.isOpenContribute, openModalTable.isOpenDonate]
         let columns = [resumeColumn, imageColumn, contributorColumn, donateColumn]
 

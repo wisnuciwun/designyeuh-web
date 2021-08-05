@@ -291,11 +291,22 @@ export function procImageInsert() {
             Cell: props => <span>{props.value}</span>
         },
         {
-            Header: 'Download Link',
+            Header: 'Download Link PC',
             accessor: 'link',
             minWidth: 150,
             Cell: props => <span>{props.value}</span>
-
+        },
+        {
+            Header: 'Download Link Mobile',
+            accessor: 'link_Mobile',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
+        },
+        {
+            Header: 'Thumbnail',
+            accessor: 'filename',
+            minWidth: 150,
+            Cell: props => <span>{props.value}</span>
         },
         {
             Header: 'Author',
