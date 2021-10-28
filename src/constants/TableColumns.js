@@ -303,12 +303,6 @@ export function procImageInsert() {
             Cell: props => <span>{props.value}</span>
         },
         {
-            Header: 'Thumbnail',
-            accessor: 'filename',
-            minWidth: 150,
-            Cell: props => <span>{props.value}</span>
-        },
-        {
             Header: 'Author',
             accessor: 'author',
             minWidth: 150,

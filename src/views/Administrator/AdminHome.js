@@ -63,7 +63,7 @@ export class AdminHome extends Component {
                 values: ['','','','']
             },
             imageInsert: {
-                title: ['title','filename', 'link', 'link_Mobile', 'filename', 'author'],
+                title: ['title','filename', 'link', 'link_Mobile', 'author'],
                 values: ['','','','']
             },
             contributorInsert: {
