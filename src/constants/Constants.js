@@ -1,10 +1,10 @@
-var apibaseresume = `xY9bN@KVMtk%zYwMMZUR5m&LS`
-var apibaseimage = `dZ8&nkpB7RsWpkTv$sVIm9TTy`
-var apibasedonation = `yB90ygbgjTjhdcf%gFhD0n!LJ`
-var apibasecontributors = `hbfaj7bbn%jfbHb$QnCnTPP7`
-var apibaseusers = `byg7Gvd%hfjam&n8BEU5r77Q`
-var apiauth = `cBdhiu^jfw%bfah*8TC4uTdd9f`
-var apibaseadmin = `pehYG75jb$9*6rQWx^A4mOpW`
+var apibaseresume = `wq2JW1dFsZBXK5B`
+var apibaseimage = `Uf5CE2eTK5yeDdi`
+var apibasedonation = `I2qUaJ6OtpdCOJy`
+var apibasecontributors = `GZKHwxPb8lxoIhQ`
+var apibaseusers = `TKhp86kus08brnJ`
+var apiauth = `amRd2xPxrZeDe8K`
+var apibaseadmin = `x5eYKp9V1qGnyrt`
 
 module.exports = {
     API_URL_GET_RESUMES : `${apibaseresume}/85Ac17eClf`,

@@ -44,12 +44,11 @@ export default class DefaultFooter extends Component {
                         <span style={{fontSize: "100%"}} className="d-none d-lg-block" >
                             <h2 style={{textAlign: "right"}}><i className="fas fa-hamburger"></i>&nbsp;&nbsp;<b>Ingredients</b></h2>
                             <p style={{textAlign: "right"}}>
-                                Raspberry Pi 4B (4/16 GB)<br/>
                                 React JS<br/>
-                                .Net<br/>
-                                MariaDB<br/>
-                                FreeDDNS<br/>
-                                OnlyDomains<br/>
+                                ASP.Net<br/>
+                                MySQL<br/>
+                                Express<br/>
+                                IIS<br/>
                             </p>
                         </span>
                 </div>
